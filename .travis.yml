@@ -28,7 +28,7 @@ script:
 
 after_script:
   - php vendor/bin/coveralls -v -c .coveralls.yml
-  - CODECLIMATE_REPO_TOKEN=c27748a15d6c7c79ab8acc2387c67a29bcd0e4aafef6ad4253a06a9bb1831ae6 vendor/bin/test-reporter --stdout > codeclimate.json
+  - CODECLIMATE_REPO_TOKEN=9f0870890bbdaa29a2e7259601a1d0e2afca892deeb22251b4ec70cfd1e0dc47 vendor/bin/test-reporter --stdout > codeclimate.json
   - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
 
 deploy:
