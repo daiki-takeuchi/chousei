@@ -1,0 +1,2 @@
+# サンプルアプリケーション
+[![Build Status](https://travis-ci.org/daiki-takeuchi/chousei.svg?branch=master)](https://travis-ci.org/daiki-takeuchi/chousei) [![Code Climate](https://codeclimate.com/github/daiki-takeuchi/chousei/badges/gpa.svg)](https://codeclimate.com/github/daiki-takeuchi/chousei) [![Test Coverage](https://codeclimate.com/github/daiki-takeuchi/chousei/badges/coverage.svg)](https://codeclimate.com/github/daiki-takeuchi/chousei/coverage)
