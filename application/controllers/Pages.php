@@ -32,6 +32,11 @@ class Pages extends MY_Controller
         $this->display('pages/login.tpl');
     }
 
+    public function logout() {
+        $this->session->sess_destroy();
+        redirect(site_url());
+    }
+
     private function _login_validation()
     {
         $this->load->library("form_validation");
@@ -46,10 +51,5 @@ class Pages extends MY_Controller
             $this->session->set_userdata($data);
             redirect(site_url().'home');
         }
-    }
-
-    public function logout() {
-        $this->session->sess_destroy();
-        redirect(site_url());
     }
 }
