@@ -18,7 +18,7 @@ class Pages extends MY_Controller
     {
         // ログインしている場合はホームに移動
         if($this->session->userdata("is_logged_in")) {
-            redirect(site_url());
+            redirect(site_url().'home');
         }
 
         if (isset($_POST)) {
@@ -42,7 +42,7 @@ class Pages extends MY_Controller
                 "is_logged_in" => 1
             );
             $this->session->set_userdata($data);
-            redirect(site_url());
+            redirect(site_url().'home');
         }
     }
 

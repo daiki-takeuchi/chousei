@@ -10,7 +10,7 @@
             <div class="panel panel-default" >
 
                 <div class="panel-body" >
-                    <form method="post" action="" accept-charset="utf-8">
+                    <form method="post" action="{site_url}login" accept-charset="utf-8">
                         {include file='pages/login_fields.tpl'}
                         <a href="#">ログインでお困りの場合はこちら</a>
                         <div class="row">

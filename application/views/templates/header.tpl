@@ -13,8 +13,8 @@
 
         <div id="nav-content" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="{site_url}"><span class="glyphicon glyphicon-home"></span>　ホーム</a></li>
                 {if isset($smarty.session.is_logged_in) && $smarty.session.is_logged_in === 1}
+                    <li><a href="{site_url}home"><span class="glyphicon glyphicon-home"></span>　ホーム</a></li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">

@@ -47,11 +47,11 @@ class Pages_test extends TestCase
         ];
         // ログインするとホームに遷移する
         $this->request('POST', 'login', $data);
-        $this->assertRedirect('/', 302);
+        $this->assertRedirect('/home', 302);
 
         // ログイン状態でログイン画面に遷移するとホームに遷移する
         $this->request('GET', 'login');
-        $this->assertRedirect('/', 302);
+        $this->assertRedirect('/home', 302);
     }
 
     /**
