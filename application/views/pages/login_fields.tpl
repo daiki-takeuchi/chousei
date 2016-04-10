@@ -6,7 +6,7 @@
                     <span class="glyphicon glyphicon-envelope"></span>
                 </span>
                 <input type="text" class="form-control" name="email" placeholder="ログインメールアドレス"
-                       value="{if isset($post['email'])}{$post['email']}{/if}">
+                       value="{if isset($post['email'])}{$post['email']}{/if}" />
             </div>
         </div>
         <div class="form-group">
@@ -14,8 +14,7 @@
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-lock"></span>
                 </span>
-                <input type="password" class="form-control" name="password" placeholder="パスワード"
-                       value="">
+                <input type="password" class="form-control" name="password" placeholder="パスワード" />
             </div>
         </div>
     </div>

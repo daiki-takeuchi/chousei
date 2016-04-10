@@ -8,9 +8,8 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
             <div class="panel panel-default" >
-
                 <div class="panel-body" >
-                    <form method="post" action="{site_url}pages/login" accept-charset="utf-8">
+                    <form method="post" action="{site_url}login" accept-charset="utf-8">
                         {include file='pages/login_fields.tpl'}
                         <a href="#">ログインでお困りの場合はこちら</a>
                         <div class="row">
