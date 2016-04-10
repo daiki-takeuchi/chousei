@@ -22,7 +22,7 @@ class Pages extends MY_Controller
         if($this->session->userdata("is_logged_in")) {
             redirect(site_url().'home');
         }
-
+var_dump($_POST);
         if (isset($_POST)) {
             $this->_login_validation();
         }
