@@ -26,9 +26,7 @@ var_dump($_POST);
         if (isset($_POST)) {
             $this->_login_validation();
         }
-        $data['post'] = $_POST;
 
-        $this->smarty->assign($data);
         $this->display('pages/login.tpl');
     }
 
@@ -39,6 +37,7 @@ var_dump($_POST);
 
     private function _login_validation()
     {
+        var_dump('_login_validation');
         $this->load->library("form_validation");
 
         if ($this->form_validation->run('login') !== FALSE) {
