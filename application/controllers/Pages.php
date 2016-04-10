@@ -2,7 +2,7 @@
 
 class Pages extends MY_Controller
 {
-    public function index($page = 'home')
+    public function index($page = 'login')
     {
         if (!file_exists(APPPATH . '/views/pages/' . $page . '.tpl')) {
             // Whoops, we don't have a page for that!
@@ -49,20 +49,5 @@ class Pages extends MY_Controller
     public function logout() {
         $this->session->sess_destroy();
         redirect(site_url());
-    }
-
-    public function about()
-    {
-        $this->index('about');
-    }
-
-    public function contact()
-    {
-        $this->index('contact');
-    }
-
-    public function help()
-    {
-        $this->index('help');
     }
 }
