@@ -30,15 +30,6 @@ class Pages_test extends TestCase
     /**
      * @test
      */
-    public function 引数に存在しないページを指定した場合は404へ遷移()
-    {
-        $this->request('GET', ['Pages', 'index', 'aaa']);
-        $this->assertResponseCode(404);
-    }
-
-    /**
-     * @test
-     */
     public function ログインしている場合にログインするとホームに遷移()
     {
         $data = [
