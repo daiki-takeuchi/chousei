@@ -1,6 +1,7 @@
 <div class="row">
     <div class="col-sm-12 controls">
         <div class="form-group">
+            <label for="email">メールアドレス</label>
             <div class='input-group'>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-envelope"></span>
@@ -10,6 +11,7 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="password">パスワード</label>
             <div class='input-group'>
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-lock"></span>
