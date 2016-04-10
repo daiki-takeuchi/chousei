@@ -2,16 +2,18 @@
 
 class Pages extends MY_Controller
 {
-    public function index($page = 'login')
+    public function index()
     {
-        if (!file_exists(APPPATH . '/views/pages/' . $page . '.tpl')) {
-            // Whoops, we don't have a page for that!
-            show_404();
-        }
-        $data['title'] = ucfirst($page);
+        $this->display('pages/login.tpl');
+    }
 
-        $this->smarty->assign($data);
-        $this->display('pages/' . $page . '.tpl');
+    public function home()
+    {
+        // ログインしてない場合はログイン画面に移動
+        if(!$this->session->userdata("is_logged_in")) {
+            redirect(site_url());
+        }
+        $this->display('pages/home.tpl');
     }
 
     public function login()
