@@ -41,6 +41,7 @@ var_dump($_POST);
         $this->load->library("form_validation");
 
         if ($this->form_validation->run('login') !== FALSE) {
+            var_dump('run(\'login\') !== FALSE');
             $email = $this->input->post("email");
             $user = $this->users_model->find_by_email($email);
             $data = array(
