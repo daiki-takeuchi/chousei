@@ -3,12 +3,14 @@
         <div class="navbar-header">
             <a class="navbar-brand" id="logo" href="{site_url}home">調整くん</a>
 
+            {if isset($smarty.session.is_logged_in) && $smarty.session.is_logged_in === 1}
             <!--トグルボタン-->
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-content">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
+            {/if}
         </div>
 
         <div id="nav-content" class="navbar-collapse collapse">
