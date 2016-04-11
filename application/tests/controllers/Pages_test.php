@@ -18,11 +18,26 @@ class Pages_test extends TestCase
         $CI->seeder->call('UsersSeeder');
     }
 
+    public function setUp()
+    {
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    public function tearDown()
+    {
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
     /**
      * @test
      */
     public function 引数なしでindexページへ移動した場合はログインへ遷移()
     {
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+
         $output = $this->request('GET', ['Pages', 'index']);
         $this->assertContains('<title>Login | 調整くん</title>', $output);
     }

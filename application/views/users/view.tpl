@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a class="btn btn-primary" href="{site_url}">ホームに戻る</a>
+            <a class="btn btn-primary" href="{site_url}home">ホームに戻る</a>
             <a class="btn btn-primary" href="{site_url}users/edit/{$user_item['id']}">編集</a>
         </div>
     </div>

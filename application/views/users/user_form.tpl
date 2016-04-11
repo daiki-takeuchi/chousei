@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
                 <input type="submit" name="submit" class="btn btn-primary" value="登録"/>
-                <a class="btn btn-primary" href="{site_url}">ホームに戻る</a>
+                <a class="btn btn-primary" href="{site_url}home">戻る</a>
             </div>
         </div>
     </form>
