@@ -5,5 +5,5 @@ exclude_paths:
 -application/third_party/*
 -application/tests/*
 -public/assets/javascripts/jquery*
--public/assets/javascripts/bootstrap.js
--public/assets/stylesheets/bootstrap.css
+-public/assets/javascripts/bootstrap*
+-public/assets/stylesheets/bootstrap*
