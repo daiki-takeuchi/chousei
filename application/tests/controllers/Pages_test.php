@@ -71,7 +71,7 @@ class Pages_test extends TestCase
         ];
         // ログインする
         $output = $this->request('POST', 'login', $data);
-        $this->assertContains('ユーザー名かパスワードが異なります。', $output);
+        $this->assertContains('メールアドレスかパスワードが異なります。', $output);
     }
 
     /**
@@ -85,7 +85,7 @@ class Pages_test extends TestCase
         ];
         // ログインする
         $output = $this->request('POST', 'login', $data);
-        $this->assertContains('ユーザー名かパスワードが異なります。', $output);
+        $this->assertContains('メールアドレスかパスワードが異なります。', $output);
     }
 
     /**
