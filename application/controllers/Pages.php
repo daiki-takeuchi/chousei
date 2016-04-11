@@ -40,9 +40,6 @@ class Pages extends MY_Controller
 
     private function _login_validation()
     {
-        var_dump('_login_validation');
-        $this->load->library("form_validation");
-
         if ($this->form_validation->run('login') !== FALSE) {
             $email = $this->input->post("email");
             $user = $this->users_model->find_by_email($email);

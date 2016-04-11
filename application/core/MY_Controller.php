@@ -15,6 +15,8 @@ class MY_Controller extends CI_Controller
         $this->smarty->compile_dir = APPPATH . 'views/templates_c';
 
         $this->load->helper('url');
+        $this->load->helper('form');
+        $this->load->library('form_validation');
     }
 
     /**

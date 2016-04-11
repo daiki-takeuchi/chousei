@@ -41,4 +41,5 @@
             </div>
         </div>
     </div>
+    <input type="hidden" name="user_id" value="{if isset($smarty.session.user.id)}{$smarty.session.user.id}{/if}">
 </div>

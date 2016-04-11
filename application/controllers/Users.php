@@ -31,9 +31,6 @@ class Users extends MY_Controller
 
     public function edit($id = NULL)
     {
-        $this->load->helper('form');
-        $this->load->library('form_validation');
-
         $user = $this->_get_user($id);
         $data['title'] = $this->_get_title($user);
 
@@ -58,7 +55,7 @@ class Users extends MY_Controller
 
     private function _get_title($user)
     {
-        if ( ! isset($user['id'])) {
+        if (!isset($user['id'])) {
             return 'ユーザー登録';
         } else {
             return 'ユーザー編集';
@@ -67,7 +64,6 @@ class Users extends MY_Controller
 
     private function _save_user(&$user)
     {
-
         $user['email'] = $this->input->post('email');
         $user['name'] = $this->input->post('name');
         $user['password'] = sha1($this->input->post('email').$this->input->post('password'));

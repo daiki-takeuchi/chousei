@@ -9,7 +9,7 @@ $config = array(
         array(
             'field' => 'email',
             'label' => 'メールアドレス',
-            'rules' => 'required|trim|valid_email'
+            'rules' => 'required|trim|valid_email|validate_duplicate_user'
         ),
         array(
             'field' => 'password',
