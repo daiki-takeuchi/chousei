@@ -1,5 +1,5 @@
 <footer class="footer">
-    <small> &copy; 2015</small>
+    <small> &copy; 2016</small>
     <nav>
         <ul>
             <li><a href="{site_url}"></a></li>

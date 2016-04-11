@@ -47,8 +47,8 @@ h2 {
 }
 
 p {
-    font-size: 1.1em;
-    line-height: 1.7em;
+    font-size: 0.9em;
+    line-height: 0.7em;
 }
 
 /* header */
@@ -218,31 +218,4 @@ footer ul li {
     margin: 0 0 14px 0;
     padding: 14px 15px 10px 15px;
     text-align: left;
-}
-
-#news_list .created_at {
-    border-bottom: solid 1px #999;
-    color: #999;
-}
-
-#news_list h3 {
-    letter-spacing: -1px;
-    font: 20px Helvetica, Arial, sans-serif;
-    font-weight: bold;
-}
-
-#news_list .list-group-item-text {
-    max-height: 35px;
-    overflow: hidden;
-}
-
-#news_title h1 {
-    clear: both;
-    font: 25px Helvetica, Arial, sans-serif;
-    text-align: left;
-    margin: 0;
-}
-
-#news_title .right {
-    text-align: right;
 }

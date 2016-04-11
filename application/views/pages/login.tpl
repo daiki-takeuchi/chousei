@@ -11,8 +11,8 @@
                 <div class="panel-body" >
                     <form method="post" action="{site_url}login" accept-charset="utf-8">
                         {include file='pages/login_fields.tpl'}
-                        <a href="#">ログインでお困りの場合はこちら</a><br />
-                        <a href="{site_url}users/create">新規登録はこちら</a>
+                        <p><a href="#">ログインでお困りの場合はこちら</a></p>
+                        <p><a href="{site_url}users/create">新規登録はこちら</a></p>
                         <div class="row">
                             <div class="col-sm-12 controls">
                                 <button type="submit" name="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-log-in"></span> ログイン</button>

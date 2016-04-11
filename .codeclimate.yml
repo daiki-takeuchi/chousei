@@ -4,3 +4,4 @@ languages:
 exclude_paths:
  - "application/third_party/*"
  - "application/tests/*"
+ - "public/assets/javascripts/jquery*"
