@@ -11,7 +11,11 @@ class Migration_Add_admin_to_users extends CI_Migration {
 	{
 		// Adding a Column to a Table
 		$fields = array(
-			'admin' => array('type' => 'BOOLEAN'),
+			'admin' => array(
+				'type' => 'BOOLEAN',
+				'null' => FALSE,
+				'default' => FALSE
+			),
 		);
 		$this->dbforge->add_column('users', $fields);
 	}

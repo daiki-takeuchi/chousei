@@ -1,8 +1,6 @@
 {extends file='templates/application.tpl'}
 
-{block name=title}
-    {'ホーム | 調整くん'}
-{/block}
+{block name=title}ホーム | 調整くん{/block}
 
 {block name=jumbotron_h2}
     {'ホーム'}

@@ -24,22 +24,33 @@ class Pages_test extends TestCase
         $this->request('GET', 'logout');
     }
 
-    public function tearDown()
-    {
-        // Teardown ログアウト
-        $this->request('GET', 'logout');
-    }
-
     /**
      * @test
      */
     public function 引数なしでindexページへ移動した場合はログインへ遷移()
     {
-        // Teardown ログアウト
-        $this->request('GET', 'logout');
-
         $output = $this->request('GET', ['Pages', 'index']);
         $this->assertContains('<title>Login | 調整くん</title>', $output);
+    }
+
+    /**
+     * @test
+     */
+    public function ログインしている場合にindexページへ移動した場合はホームへ遷移()
+    {
+        $data = [
+            'email' => 'email1@example.com',
+            'password' => 'password',
+        ];
+        // ログイン
+        $this->request('POST', 'login', $data);
+
+        // ログインしている場合にindexページへ移動した場合はホームへ遷移
+        $this->request('GET', ['Pages', 'index']);
+        $this->assertRedirect('/home', 302);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
     }
 
     /**
@@ -58,6 +69,9 @@ class Pages_test extends TestCase
         // ログイン状態でログイン画面に遷移するとホームに遷移する
         $this->request('GET', 'login');
         $this->assertRedirect('/home', 302);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
     }
 
     /**
@@ -86,6 +100,37 @@ class Pages_test extends TestCase
         // ログインする
         $output = $this->request('POST', 'login', $data);
         $this->assertContains('メールアドレスかパスワードが異なります。', $output);
+    }
+
+    /**
+     * @test
+     */
+    public function ホームに遷移()
+    {
+        $data = [
+            'email' => 'email1@example.com',
+            'password' => 'password',
+        ];
+
+        // ログインするとホームに遷移する
+        $this->request('POST', 'login', $data);
+
+        // ログイン状態でホーム画面に遷移するとホームに遷移する
+        $output = $this->request('GET', 'home');
+        $this->assertContains('<title>ホーム | 調整くん</title>', $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
+    public function ログインしてない場合にホームに遷移するとログインにリダイレクト()
+    {
+        // ログインしてない場合にホームに遷移するとログインにリダイレクトする
+        $this->request('GET', 'home');
+        $this->assertRedirect('/', 302);
     }
 
     /**
