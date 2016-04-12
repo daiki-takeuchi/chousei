@@ -119,6 +119,16 @@ class Users_test extends TestCase
         $output = $this->request('POST', ['Users', 'create'], $post);
         $this->assertContains('パスワード欄が パスワードの確認欄と同じではありません', $output);
 
+        // メールアドレス重複チェック
+        $post = [
+            'email' => 'email1@example.com',
+            'name' => '名前１',
+            'password' => 'password',
+            'password_confirmation' => 'bad_password_conf',
+        ];
+        $output = $this->request('POST', ['Users', 'create'], $post);
+        $this->assertContains('すでに同じメールアドレスが登録されています。', $output);
+
         $after = count($this->users_model->find());
 
         // 更新前後で件数が変わらない
