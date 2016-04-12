@@ -17,7 +17,7 @@
             <ul class="nav navbar-nav navbar-right">
                 {if isset($smarty.session.is_logged_in) && $smarty.session.is_logged_in === 1}
                     <li><a href="{site_url}home"><span class="glyphicon glyphicon-home"></span>　ホーム</a></li>
-                    {if isset($smarty.session.user.admin)}
+                    {if isset($smarty.session.user.admin) && $smarty.session.user.admin === 't'}
                         <li><a href="{site_url}home"><span class="glyphicon glyphicon-calendar"></span>　予定を作成</a></li>
                     {/if}
                     <li class="dropdown">
@@ -26,7 +26,7 @@
                             <span class="glyphicon glyphicon-user"></span>　{$smarty.session.user.name}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            {if isset($smarty.session.user.admin)}
+                            {if isset($smarty.session.user.admin) && $smarty.session.user.admin === 't'}
                                 <li><a href="{site_url}home"><span class="glyphicon glyphicon-globe"></span>　ユーザー管理</a></li>
                             {/if}
                             <li><a href="{site_url}users/edit/{$smarty.session.user.id}">
