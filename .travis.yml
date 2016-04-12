@@ -8,7 +8,7 @@ before_install:
 env:
 - DB=pgsql
 before_script:
-- travis_retry composer install --no-interaction --ignore-platform-reqs
+- composer install --dev --prefer-source
 - psql postgres -c "CREATE ROLE root WITH LOGIN PASSWORD 'P@ssw0rd';"
 - psql postgres -c 'DROP DATABASE IF EXISTS chousei;'
 - psql postgres -c 'CREATE DATABASE chousei owner root;'
