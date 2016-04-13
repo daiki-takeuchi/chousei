@@ -9,7 +9,7 @@
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
             <div class="panel panel-default" >
                 <div class="panel-body" >
-                    <form method="post" action="{site_url}login" accept-charset="utf-8">
+                    <form method="post" action="{site_url}" accept-charset="utf-8">
                         {include file='pages/login_fields.tpl'}
                         <p><a href="#">ログインでお困りの場合はこちら</a></p>
                         <p><a href="{site_url}users/create">新規登録はこちら</a></p>

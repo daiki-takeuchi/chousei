@@ -8,6 +8,10 @@ class Pages extends MY_Controller
         if($this->session->userdata("is_logged_in")) {
             redirect(site_url().'home');
         }
+        if (isset($_POST)) {
+            $this->_login_validation();
+        }
+
         $this->display('pages/login.tpl');
     }
 
@@ -18,19 +22,6 @@ class Pages extends MY_Controller
             redirect(site_url());
         }
         $this->display('pages/home.tpl');
-    }
-
-    public function login()
-    {
-        // ログインしている場合はホームに移動
-        if($this->session->userdata("is_logged_in")) {
-            redirect(site_url().'home');
-        }
-        if (isset($_POST)) {
-            $this->_login_validation();
-        }
-
-        $this->display('pages/login.tpl');
     }
 
     public function logout() {

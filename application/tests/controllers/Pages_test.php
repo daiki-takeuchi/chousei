@@ -43,7 +43,7 @@ class Pages_test extends TestCase
             'password' => 'password',
         ];
         // ログイン
-        $this->request('POST', 'login', $data);
+        $this->request('POST', '/', $data);
 
         // ログインしている場合にindexページへ移動した場合はホームへ遷移
         $this->request('GET', ['Pages', 'index']);
@@ -63,11 +63,11 @@ class Pages_test extends TestCase
             'password' => 'password',
         ];
         // ログインするとホームに遷移する
-        $this->request('POST', 'login', $data);
+        $this->request('POST', '/', $data);
         $this->assertRedirect('/home', 302);
 
         // ログイン状態でログイン画面に遷移するとホームに遷移する
-        $this->request('GET', 'login');
+        $this->request('GET', '/');
         $this->assertRedirect('/home', 302);
 
         // Teardown ログアウト
@@ -84,7 +84,7 @@ class Pages_test extends TestCase
             'password' => 'bad password',
         ];
         // ログインする
-        $output = $this->request('POST', 'login', $data);
+        $output = $this->request('POST', '/', $data);
         $this->assertContains('メールアドレスかパスワードが異なります。', $output);
     }
 
@@ -98,7 +98,7 @@ class Pages_test extends TestCase
             'password' => 'password',
         ];
         // ログインする
-        $output = $this->request('POST', 'login', $data);
+        $output = $this->request('POST', '/', $data);
         $this->assertContains('メールアドレスかパスワードが異なります。', $output);
     }
 
@@ -113,7 +113,7 @@ class Pages_test extends TestCase
         ];
 
         // ログインするとホームに遷移する
-        $this->request('POST', 'login', $data);
+        $this->request('POST', '/', $data);
 
         // ログイン状態でホーム画面に遷移するとホームに遷移する
         $output = $this->request('GET', 'home');
