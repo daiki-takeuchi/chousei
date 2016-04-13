@@ -7,7 +7,7 @@
                             <span class="glyphicon glyphicon-envelope"></span>
                         </span>
                 <input type="text" class="form-control" name="email" placeholder="メールアドレス"
-                       value="{if isset($smarty.session.user.email)}{$smarty.session.user.email}{/if}">
+                       value="{$email}">
             </div>
         </div>
         <div class="from-group">
@@ -17,7 +17,7 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
                 <input type="text" class="form-control" name="name" placeholder="名前"
-                       value="{if isset($smarty.session.user.name)}{$smarty.session.user.name}{/if}">
+                       value="{$user_name}">
             </div>
         </div>
         <div class="from-group">
@@ -41,5 +41,5 @@
             </div>
         </div>
     </div>
-    <input type="hidden" name="user_id" value="{if isset($smarty.session.user.id)}{$smarty.session.user.id}{/if}">
+    <input type="hidden" name="user_id" value="{$user_id}">
 </div>

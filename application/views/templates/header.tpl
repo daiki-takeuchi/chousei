@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a class="navbar-brand" id="logo" href="{site_url}home">調整くん</a>
 
-            {if isset($smarty.session.is_logged_in) && $smarty.session.is_logged_in === 1}
+            {if $is_login}
             <!--トグルボタン-->
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-content">
                 <span class="icon-bar"></span>
@@ -15,21 +15,21 @@
 
         <div id="nav-content" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                {if isset($smarty.session.is_logged_in) && $smarty.session.is_logged_in === 1}
+                {if $is_login}
                     <li><a href="{site_url}home"><span class="glyphicon glyphicon-home"></span>　ホーム</a></li>
-                    {if isset($smarty.session.user.admin) && $smarty.session.user.admin === 't'}
+                    {if $admin}
                         <li><a href="{site_url}home"><span class="glyphicon glyphicon-calendar"></span>　予定を作成</a></li>
                     {/if}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-user"></span>　{$smarty.session.user.name}
+                            <span class="glyphicon glyphicon-user"></span>　{$user_name}
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            {if isset($smarty.session.user.admin) && $smarty.session.user.admin === 't'}
+                            {if $admin}
                                 <li><a href="{site_url}home"><span class="glyphicon glyphicon-globe"></span>　ユーザー管理</a></li>
                             {/if}
-                            <li><a href="{site_url}users/edit/{$smarty.session.user.id}">
+                            <li><a href="{site_url}users/edit/{$user_id}">
                                     <span class="glyphicon glyphicon-pencil"></span>　編集</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{site_url}logout"><span class="glyphicon glyphicon-log-out"></span>　ログアウト</a></li>

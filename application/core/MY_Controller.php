@@ -11,6 +11,7 @@ class MY_Controller extends CI_Controller
 
     protected $is_login;
     protected $user_id;
+    protected $user_name;
     protected $admin;
 
     public function __construct()
@@ -24,9 +25,13 @@ class MY_Controller extends CI_Controller
         $this->load->library('form_validation');
 
         $userdata = $this->session->userdata();
-        $this->is_login = isset($userdata["is_logged_in"]) ? $userdata["is_logged_in"] : false;
-        $this->user_id = isset($userdata["user"]) ? $userdata["user"]["id"] : false;
-        $this->admin = isset($userdata["user"]) ? $userdata["user"]["admin"] === 't' : false;
+        $data['is_login'] = $this->is_login = isset($userdata["is_logged_in"]) ? $userdata["is_logged_in"] : false;
+        $data['user_id'] = $this->user_id = isset($userdata["user"]) ? $userdata["user"]["id"] : false;
+        $data['user_name'] = $this->user_name = isset($userdata["user"]) ? $userdata["user"]["name"] : false;
+        $data['email'] = $this->user_name = isset($userdata["user"]) ? $userdata["user"]["email"] : false;
+        $data['admin'] = $this->admin = isset($userdata["user"]) ? $userdata["user"]["admin"] === 't' : false;
+
+        $this->smarty->assign($data);
     }
 
     /**
