@@ -10,6 +10,7 @@ class Users_test extends TestCase
         $CI =& get_instance();
         $CI->load->library('Seeder');
         $CI->seeder->call('UsersSeeder');
+        $CI->seeder->call('AdminUserSeeder');
     }
 
     public function setUp()
@@ -24,11 +25,18 @@ class Users_test extends TestCase
      */
     public function 詳細ページに遷移できる()
     {
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
         $user = $this->users_model->find()[0];
 
         // Verify
         $output = $this->request('GET', ['Users', 'view', $user['id']]);
         $this->assertContains($user['name'], $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
     }
 
     /**
@@ -36,11 +44,18 @@ class Users_test extends TestCase
      */
     public function 存在しないユーザーの場合は存在しませんページに遷移する()
     {
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
         $user = $this->users_model->get_users()[0];
 
         // Verify
         $output = $this->request('GET', ['Users', 'view', $user['id'] + 1]);
         $this->assertContains('User Not Found', $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
     }
 
     /**
@@ -73,9 +88,6 @@ class Users_test extends TestCase
 
         // 更新前の件数に1件追加されている
         $this->assertEquals($before + 1, $after);
-
-        // TearDown
-        $this->request('GET', ['Pages', 'logout']);
     }
 
     /**
@@ -140,6 +152,10 @@ class Users_test extends TestCase
      */
     public function ユーザー編集画面に遷移できる()
     {
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
         // SetUp データ
         $user = array(
             'email' => 'email_user_edit@example.com',
@@ -153,6 +169,9 @@ class Users_test extends TestCase
         // Verify
         $output = $this->request('GET', ['Users', 'edit', $user['id']]);
         $this->assertContains('ユーザー編集', $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
     }
 
     /**
@@ -160,6 +179,10 @@ class Users_test extends TestCase
      */
     public function ユーザーを編集できる()
     {
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
         // SetUp データ
         $user = array(
             'email' => 'email_user_edit_before@example.com',
@@ -185,5 +208,19 @@ class Users_test extends TestCase
         $this->assertEquals('変更後', $sut['name']);
         // 詳細ページにリダイレクトする
         $this->assertRedirect('/users/'.$user['id']);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+    
+    /**
+     * @test
+     */
+    public function ログインしていない場合にviewページにアクセスするとログインに遷移()
+    {
+        // Verify
+        $this->request('GET', ['Users', 'view']);
+        // ログインページにリダイレクトする
+        $this->assertRedirect('/', 302);
     }
 }

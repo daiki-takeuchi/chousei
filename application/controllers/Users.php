@@ -2,6 +2,7 @@
 
 class Users extends MY_Controller
 {
+
     public function __construct()
     {
         parent::__construct();
@@ -10,6 +11,15 @@ class Users extends MY_Controller
 
     public function view($id = NULL)
     {
+        // ログインしていない場合はログインページに移動
+        if(!$this->is_login) {
+            redirect(site_url());
+        }
+        // 管理者じゃなくて自分以外のidの場合はログインページに移動
+        if (!$this->admin && $this->user_id !== $id) {
+            redirect(site_url());
+        }
+
         $data['user_item'] = $this->users_model->find($id);
 
         if (empty($data['user_item'])) {
