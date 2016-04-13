@@ -212,7 +212,7 @@ class Users_test extends TestCase
         // Teardown ログアウト
         $this->request('GET', 'logout');
     }
-    
+
     /**
      * @test
      */
@@ -223,7 +223,35 @@ class Users_test extends TestCase
         // ログインページにリダイレクトする
         $this->assertRedirect('/', 302);
     }
-    
+
+    /**
+     * @test
+     */
+    public function 管理者じゃなくて自分以外のidの場合はログインページに移動()
+    {
+        // SetUp データ
+        $user = array(
+            'email' => 'users_test_user2@example.com',
+            'name' => '変更前',
+            'password' => sha1('users_test_user2@example.com'.'password'),
+            'created_at' => date('Y/m/d H:i:s'),
+            'updated_at' => date('Y/m/d H:i:s')
+        );
+        $this->users_model->save($user);
+
+        // 一般ユーザーでログイン
+        $data = ['email' => 'users_test_user2@example.com','password' => 'password'];
+        $this->request('POST', '/', $data);
+
+        // Verify
+        $this->request('GET', ['Users', 'view', $user['id']+1]);
+        // ログインページにリダイレクトする
+        $this->assertRedirect('/', 302);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
     /**
      * @test
      */
@@ -258,6 +286,51 @@ class Users_test extends TestCase
         $this->request('GET', ['Users', 'edit', $user['id']+1]);
         // ログインページにリダイレクトする
         $this->assertRedirect('/home', 302);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
+    public function 管理者じゃない場合にユーザー一覧遷移するとログインに移動()
+    {
+        // SetUp データ
+        $user = array(
+            'email' => 'users_test_user3@example.com',
+            'name' => '変更前',
+            'password' => sha1('users_test_user3@example.com'.'password'),
+            'created_at' => date('Y/m/d H:i:s'),
+            'updated_at' => date('Y/m/d H:i:s')
+        );
+        $this->users_model->save($user);
+
+        // 一般ユーザーでログイン
+        $data = ['email' => 'users_test_user3@example.com','password' => 'password'];
+        $this->request('POST', '/', $data);
+
+        // Verify
+        $this->request('GET', 'Users');
+        // ログインページにリダイレクトする
+        $this->assertRedirect('/', 302);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
+    public function 管理者の場合一覧画面に遷移できる()
+    {
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
+        // Verify
+        $output = $this->request('GET', 'Users');
+        $this->assertContains('ユーザー一覧', $output);
 
         // Teardown ログアウト
         $this->request('GET', 'logout');

@@ -9,12 +9,34 @@ class Users extends MY_Controller
         $this->load->model('users_model');
     }
 
+    public function index()
+    {
+        // 管理者じゃない場合はログインページに移動
+        if (!$this->admin) {
+            redirect(site_url());
+        }
+
+        $offset = $this->uri->segment(3 ,0);
+        // 登録されているデータを全件取得
+        $data['users'] = $this->users_model->get_users($offset);
+
+        // paginationの作成
+        $data['pagination'] = $this->users_model->get_pagination();
+
+        $data['title'] = 'ユーザー一覧';
+
+        // 各種viewを呼び出す
+        $this->smarty->assign($data);
+        $this->display('users/index.tpl');
+    }
+
     public function view($id = NULL)
     {
         // ログインしていない場合はログインページに移動
         if(!$this->is_login) {
             redirect(site_url());
         }
+
         // 管理者じゃなくて自分以外のidの場合はログインページに移動
         if (!$this->admin && $this->user_id !== $id) {
             redirect(site_url());
