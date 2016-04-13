@@ -223,4 +223,43 @@ class Users_test extends TestCase
         // ログインページにリダイレクトする
         $this->assertRedirect('/', 302);
     }
+    
+    /**
+     * @test
+     */
+    public function ログインしていなくて特定のユーザーの編集をしようとしている場合はログインページに移動()
+    {
+        // Verify
+        $this->request('GET', ['Users', 'edit', '1']);
+        // ログインページにリダイレクトする
+        $this->assertRedirect('/', 302);
+    }
+    
+    /**
+     * @test
+     */
+    public function 管理者じゃなくて自分以外のidの場合はホームに移動()
+    {
+        // SetUp データ
+        $user = array(
+            'email' => 'users_test_user1@example.com',
+            'name' => '変更前',
+            'password' => sha1('users_test_user1@example.com'.'password'),
+            'created_at' => date('Y/m/d H:i:s'),
+            'updated_at' => date('Y/m/d H:i:s')
+        );
+        $this->users_model->save($user);
+
+        // 一般ユーザーでログイン
+        $data = ['email' => 'users_test_user1@example.com','password' => 'password'];
+        $this->request('POST', '/', $data);
+
+        // Verify
+        $this->request('GET', ['Users', 'edit', $user['id']+1]);
+        // ログインページにリダイレクトする
+        $this->assertRedirect('/home', 302);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
 }

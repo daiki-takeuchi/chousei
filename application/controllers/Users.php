@@ -41,6 +41,15 @@ class Users extends MY_Controller
 
     public function edit($id = NULL)
     {
+        // ログインしていなくて特定のユーザーの編集をしようとしている場合はログインページに移動
+        if(!$this->is_login && !empty($id)) {
+            redirect(site_url());
+        }
+        // 管理者じゃなくて自分以外のidの場合はホームに移動
+        if (!$this->admin && $this->user_id !== $id && !empty($id)) {
+            redirect(site_url().'home');
+        }
+
         $user = $this->_get_user($id);
         $data['title'] = $this->_get_title($user);
 
