@@ -7,7 +7,7 @@
                             <span class="glyphicon glyphicon-envelope"></span>
                         </span>
                 <input type="text" class="form-control" name="email" placeholder="メールアドレス"
-                       value="{$email}">
+                       value="{if isset($user_item.email)}{$user_item.email}{/if}">
             </div>
         </div>
         <div class="from-group">
@@ -17,7 +17,7 @@
                             <span class="glyphicon glyphicon-user"></span>
                         </span>
                 <input type="text" class="form-control" name="name" placeholder="名前"
-                       value="{$user_name}">
+                       value="{if isset($user_item.name)}{$user_item.name}{/if}">
             </div>
         </div>
         <div class="from-group">
@@ -41,5 +41,4 @@
             </div>
         </div>
     </div>
-    <input type="hidden" name="user_id" value="{$user_id}">
 </div>

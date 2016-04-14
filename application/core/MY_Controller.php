@@ -26,10 +26,10 @@ class MY_Controller extends CI_Controller
 
         $userdata = $this->session->userdata();
         $data['is_login'] = $this->is_login = isset($userdata["is_logged_in"]) ? $userdata["is_logged_in"] : false;
-        $data['user_id'] = $this->user_id = isset($userdata["user"]) ? $userdata["user"]["id"] : false;
-        $data['user_name'] = $this->user_name = isset($userdata["user"]) ? $userdata["user"]["name"] : false;
-        $data['email'] = $this->user_name = isset($userdata["user"]) ? $userdata["user"]["email"] : false;
-        $data['admin'] = $this->admin = isset($userdata["user"]) ? $userdata["user"]["admin"] === 't' : false;
+        $data['user_id'] = $this->user_id = isset($userdata["user"]["id"]) ? $userdata["user"]["id"] : false;
+        $data['user_name'] = $this->user_name = isset($userdata["user"]["name"]) ? $userdata["user"]["name"] : false;
+        $data['email'] = $this->user_name = isset($userdata["user"]["email"]) ? $userdata["user"]["email"] : false;
+        $data['admin'] = $this->admin = isset($userdata["user"]["admin"]) ? $userdata["user"]["admin"] === 't' : false;
 
         $this->smarty->assign($data);
     }

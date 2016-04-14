@@ -84,6 +84,15 @@ class Users extends MY_Controller
         $this->display('users/user_form.tpl');
     }
 
+    public function delete($id = NULL)
+    {
+        $user = $this->_get_user($id);
+        if(isset($user['id'])) {
+            $this->users_model->delete($user);
+        }
+        redirect('/users', 'refresh');
+    }
+
     private function _get_user($id = NULL)
     {
         if ($id === NULL) {
@@ -110,13 +119,11 @@ class Users extends MY_Controller
         $user['password'] = sha1($this->input->post('email').$this->input->post('password'));
 
         if ($this->form_validation->run('user') !== FALSE) {
-
             $this->users_model->save($user);
-            $data = array(
-                "user" => $user,
-                "is_logged_in" => 1
-            );
-            $this->session->set_userdata($data);
+            if(!$this->is_login) {
+                $data = array("user" => $user, "is_logged_in" => 1);
+                $this->session->set_userdata($data);
+            }
             redirect('/users/' . $user['id'], 'refresh');
         }
     }
