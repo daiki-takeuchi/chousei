@@ -68,7 +68,7 @@ class Users extends MY_Controller
             redirect(site_url());
         }
         // 管理者じゃなくて自分以外のidの場合はホームに移動
-        if (!$this->admin && $this->user_id !== $id && !empty($id)) {
+        if (!$this->admin && $this->user_id != $id && !empty($id)) {
             redirect(site_url().'home');
         }
 
