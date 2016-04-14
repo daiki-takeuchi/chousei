@@ -48,7 +48,8 @@ class Users_test extends TestCase
         $data = ['email' => 'admin@admin.com','password' => 'admin'];
         $this->request('POST', '/', $data);
 
-        $user = $this->users_model->get_users()[0];
+        $sut = $this->users_model->get_users();
+        $user = $sut[count($sut)];
 
         // Verify
         $output = $this->request('GET', ['Users', 'view', $user['id'] + 1]);
