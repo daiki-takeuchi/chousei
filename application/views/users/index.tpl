@@ -7,18 +7,19 @@
         <div class="col-md-12">
             <div class="list-group">
                 {foreach from=$users item=users_item}
-                    <li class="list-group-item">
-                        <p>
-                            <span class="created_at">{date('Y/m/d', strtotime($users_item['created_at']))}</span>
-                        </p>
-                        <a class="list-group-item-heading" href="{site_url}users/edit/{$users_item['id']}">
-                            {$users_item['name']|escape}
-                        </a>
-
-                        <p class="list-group-item-text">
-                            {$users_item['email']|escape}
-                        </li>
-                    </a>
+                <a class="list-group-item" href="{site_url}users/edit/{$users_item['id']}">
+                    <table>
+                        <tr>
+                            <td width="70">
+                                <img alt="{$users_item['name']|escape}" class="img-circle" src="{site_url}assets/images/avatar.png" width="55" height="55" />
+                            </td>
+                            <td style="padding-top: 7px;" width="75%">
+                                <p>{$users_item['name']|escape}</p>
+                                <p>{$users_item['email']|escape}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </a>
                 {/foreach}
             </div>
             {$pagination}
