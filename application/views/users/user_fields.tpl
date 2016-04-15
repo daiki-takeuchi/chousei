@@ -1,16 +1,6 @@
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
         <div class="from-group">
-            <label for="email">メールアドレス</label>
-            <div class='input-group'>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-envelope"></span>
-                        </span>
-                <input type="text" class="form-control" name="email" placeholder="メールアドレス"
-                       value="{if isset($user_item.email)}{$user_item.email}{/if}" autocomplete="off" />
-            </div>
-        </div>
-        <div class="from-group">
             <label for="name">名前</label>
             <div class='input-group'>
                         <span class="input-group-addon">
@@ -18,6 +8,16 @@
                         </span>
                 <input type="text" class="form-control" name="name" placeholder="名前"
                        value="{if isset($user_item.name)}{$user_item.name}{/if}" autocomplete="off" />
+            </div>
+        </div>
+        <div class="from-group">
+            <label for="email">メールアドレス</label>
+            <div class='input-group'>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                <input type="text" class="form-control" name="email" placeholder="メールアドレス"
+                       value="{if isset($user_item.email)}{$user_item.email}{/if}" autocomplete="off" />
             </div>
         </div>
         {if !isset($user_item.id) || $user_id == $user_item.id}
