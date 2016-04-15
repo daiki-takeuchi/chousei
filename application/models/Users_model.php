@@ -3,6 +3,7 @@
 class Users_model extends MY_Model
 {
     protected $table = 'users';
+    protected $per_page = 10;
 
     public function can_log_in($email, $password){
 

@@ -30,6 +30,11 @@ class Users extends MY_Controller
         $this->display('users/index.tpl');
     }
 
+    public function pages()
+    {
+        $this->index();
+    }
+
     public function view($id = NULL)
     {
         // ログインしていない場合はログインページに移動

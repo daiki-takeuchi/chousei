@@ -9,7 +9,7 @@ class Users_test extends TestCase
 
         $CI =& get_instance();
         $CI->load->library('Seeder');
-        $CI->seeder->call('UsersSeeder');
+        $CI->seeder->call('UsersSeeder_30');
         $CI->seeder->call('AdminUserSeeder');
     }
 
@@ -49,7 +49,7 @@ class Users_test extends TestCase
         $this->request('POST', '/', $data);
 
         $sut = $this->users_model->get_users();
-        $user = $sut[count($sut)];
+        $user = $sut[count($sut)-1];
 
         // Verify
         $output = $this->request('GET', ['Users', 'view', $user['id'] + 1]);
@@ -332,6 +332,44 @@ class Users_test extends TestCase
         // Verify
         $output = $this->request('GET', 'Users');
         $this->assertContains('ユーザー一覧', $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
+    public function ユーザーの削除ができる()
+    {
+        $users = $this->users_model->find();
+        $before = count($users);
+
+        // Exercise
+        $this->request('GET', ['Users', 'delete', $users[0]["id"]]);
+
+        $after = count($this->users_model->find());
+
+        // 1件削除されている
+        $this->assertEquals($before - 1, $after);
+    }
+
+    /**
+     * @test
+     */
+    public function paginationで次のページへ移動する()
+    {
+        self::setUpBeforeClass();
+
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
+        // Exercise
+        $output = $this->request('GET', ['Users', 'pages', '10']);
+
+        // Verify
+        $this->assertContains('名前12', $output);
 
         // Teardown ログアウト
         $this->request('GET', 'logout');
