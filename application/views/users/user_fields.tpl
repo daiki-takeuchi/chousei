@@ -20,6 +20,7 @@
                        value="{if isset($user_item.name)}{$user_item.name}{/if}" autocomplete="off" />
             </div>
         </div>
+        {if !isset($user_item.id) || $user_id == $user_item.id}
         <div class="from-group">
             <label for="password">パスワード</label>
             <div class='input-group'>
@@ -40,6 +41,7 @@
                        value="" autocomplete="off" />
             </div>
         </div>
+        {/if}
         {if $admin}
         <div class="from-group">
             <label for="admin">管理者</label>

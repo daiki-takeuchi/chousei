@@ -18,7 +18,7 @@
                 {if $is_login}
                     <li><a href="{site_url}home"><span class="glyphicon glyphicon-home"></span>　ホーム</a></li>
                     {if $admin}
-                        <li><a href="{site_url}home"><span class="glyphicon glyphicon-calendar"></span>　予定を作成</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-calendar"></span>　予定を作成</a></li>
                     {/if}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
@@ -27,7 +27,7 @@
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             {if $admin}
-                                <li><a href="{site_url}users"><span class="glyphicon glyphicon-globe"></span>　ユーザー管理</a></li>
+                                <li><a href="{site_url}users"><span class="glyphicon glyphicon-globe"></span>　メンバー管理</a></li>
                             {/if}
                             <li><a href="{site_url}users/edit/{$user_id}">
                                     <span class="glyphicon glyphicon-pencil"></span>　編集</a></li>
