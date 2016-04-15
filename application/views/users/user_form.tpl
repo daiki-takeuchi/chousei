@@ -1,9 +1,6 @@
 {extends file='templates/application.tpl'}
-{block name=title}
-    {$title}
-{/block}
+{block name=title}{$title}{/block}
 {block name=main_contents}
-    <h1 xmlns="http://www.w3.org/1999/html">{$title}</h1>
     <form method="post" action="" accept-charset="utf-8">
         {include file='users/user_fields.tpl'}
         <div class="row">

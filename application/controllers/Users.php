@@ -119,13 +119,18 @@ class Users extends MY_Controller
 
     private function _save_user(&$user)
     {
+        $mode = $this->uri->segment(2 ,0);
+
         $user['email'] = $this->input->post('email');
         $user['name'] = $this->input->post('name');
-        $user['password'] = sha1($this->input->post('email').$this->input->post('password'));
+        $user['admin'] = $this->input->post('admin') === 'on';
+        if(!empty($this->input->post('password'))) {
+            $user['password'] = sha1($this->input->post('email').$this->input->post('password'));
+        }
 
-        if ($this->form_validation->run('user') !== FALSE) {
+        if ($this->form_validation->run('user/'.$mode) !== FALSE) {
             $this->users_model->save($user);
-            if(!$this->is_login) {
+            if(!$this->is_login || $user['id'] == $this->user_id) {
                 $data = array("user" => $user, "is_logged_in" => 1);
                 $this->session->set_userdata($data);
             }

@@ -1,6 +1,6 @@
 <?php
 $config = array(
-    'user' => array(
+    'user/create' => array(
         array(
             'field' => 'name',
             'label' => '名前',
@@ -21,6 +21,18 @@ $config = array(
             'label' => 'パスワードの確認',
             'rules' => 'required|trim'
         )
+    ),
+    'user/edit' => array(
+        array(
+            'field' => 'name',
+            'label' => '名前',
+            'rules' => 'required'
+        ),
+        array(
+            'field' => 'email',
+            'label' => 'メールアドレス',
+            'rules' => 'required|trim|valid_email'
+        ),
     ),
     'login' => array(
         array(

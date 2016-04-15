@@ -17,7 +17,7 @@
             {foreach from=$users item=users_item}
                 <div class="col-xs-12 col-sm-6" style="padding-top:5px;">
                     <a class="list-group-item" href="{site_url}users/edit/{$users_item['id']}">
-                        <table>
+                        <table style="word-break: break-all;">
                             <tr style="height:0"><td width="75px"></td><td width="100%"></td></tr>
                             <tr>
                                 <td>
