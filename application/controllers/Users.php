@@ -124,7 +124,8 @@ class Users extends MY_Controller
         $user['email'] = $this->input->post('email');
         $user['name'] = $this->input->post('name');
         $user['admin'] = $this->input->post('admin') === 'on';
-        if(!empty($this->input->post('password'))) {
+        $password = $this->input->post('password');
+        if(!empty($password)) {
             $user['password'] = sha1($this->input->post('email').$this->input->post('password'));
         }
 
