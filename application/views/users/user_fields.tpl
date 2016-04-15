@@ -40,6 +40,14 @@
                        value="" autocomplete="off" />
             </div>
         </div>
+        {if $admin}
+        <div class="from-group">
+            <label for="admin">管理者</label>
+            <div class='input-group'>
+                <input type="checkbox" class="form-control" name="admin" id="admin" />
+            </div>
+        </div>
+        {/if}
     </div>
     <input type="hidden" name="user_id" value="{$user_id}">
 </div>
