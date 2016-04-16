@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Pages
+ *
+ * @property Users_model $users_model
+ */
 class Pages extends MY_Controller
 {
     public function index()

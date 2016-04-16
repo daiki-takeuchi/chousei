@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Users
+ *
+ * @property Users_model $users_model
+ */
 class Users extends MY_Controller
 {
 
