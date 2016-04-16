@@ -18,7 +18,7 @@
                 {if $is_login}
                     <li><a href="{site_url}home"><span class="glyphicon glyphicon-home"></span>　ホーム</a></li>
                     {if $admin}
-                        <li><a href="#"><span class="glyphicon glyphicon-calendar"></span>　予定を作成</a></li>
+                        <li><a href="{site_url}events"><span class="glyphicon glyphicon-calendar"></span>　予定を作成</a></li>
                     {/if}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"

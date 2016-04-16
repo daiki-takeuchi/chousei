@@ -5,6 +5,7 @@
  * User: DaikiTakeuchi
  * Date: 2015/09/26
  * Time: 23:27
+ * @property Generate_pagination      $generate_pagination
  */
 class MY_Model extends CI_Model
 {

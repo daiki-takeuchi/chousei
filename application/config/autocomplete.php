@@ -27,9 +27,9 @@
  * -property CI_DB_mysql_driver       $db
  * -property CI_DB_mysql_forge        $dbforge
  * -property CI_DB_mysql_utility      $dbutil
- * @property CI_DB_mysqli_driver      $db
- * @property CI_DB_mysqli_forge       $dbforge
- * @property CI_DB_mysqli_utility     $dbutil
+ * -property CI_DB_mysqli_driver      $db
+ * -property CI_DB_mysqli_forge       $dbforge
+ * -property CI_DB_mysqli_utility     $dbutil
  * -property CI_DB_oci8_driver        $db
  * -property CI_DB_oci8_forge         $dbforge
  * -property CI_DB_oci8_utility       $dbutil
@@ -57,9 +57,9 @@
  * -property CI_DB_pdo_sqlite_driver  $db
  * -property CI_DB_pdo_sqlite_forge   $dbforge
  * -property CI_DB_pdo_sqlsrv_forge   $dbutil
- * -property CI_DB_postgre_driver     $db
- * -property CI_DB_postgre_forge      $dbforge
- * -property CI_DB_postgre_utility    $dbutil
+ * @property CI_DB_postgre_driver     $db
+ * @property CI_DB_postgre_forge      $dbforge
+ * @property CI_DB_postgre_utility    $dbutil
  * -property CI_DB_sqlite_driver      $db
  * -property CI_DB_sqlite_forge       $dbforge
  * -property CI_DB_sqlite_utility     $dbutil
@@ -91,6 +91,7 @@
  * @property CI_Cache                 $cache
  * @property CI_Session               $session
  *
+ * @property Smarty                   $smarty
  * @property Your_lib                    $your_lib
  */
 class CI_Controller{};
@@ -196,7 +197,7 @@ class CI_DB extends CI_DB_query_builder{};
  * @property CI_Migration             $migration
  * @property CI_Pagination            $pagination
  * @property CI_Parser                $parser
- * @property CI_Table                 $table
+ * -property CI_Table                 $table
  * @property CI_Trackback             $trackback
  * @property CI_Typography            $typography
  * @property CI_Unit_test             $unit_test

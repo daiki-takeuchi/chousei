@@ -22,7 +22,7 @@ class Events_model extends MY_Model
 
     public function get_events($offset = FALSE)
     {
-        $this->db->order_by('id', 'desc');
+        $this->db->order_by('start_time', 'desc');
         if($offset !== FALSE){
             $this->db->limit($this->per_page, $offset);
         }
