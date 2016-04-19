@@ -92,13 +92,15 @@
  * @property CI_Session               $session
  *
  * @property Smarty                   $smarty
- * @property Your_lib                    $your_lib
+ * @property Events_model             $Events_model
+ * @property Invitation_model         $Invitation_model
+ * @property Users_model              $Users_model
  */
 class CI_Controller{};
-//class MY_Controller extends CI_Controller{};
+class MY_Controller extends CI_Controller{};
 
 // Comment out and edit dbdriver class if QueryBuilder is on.
-class CI_DB_mysqli_driver      extends CI_DB{};
+//class CI_DB_mysqli_driver      extends CI_DB{};
 // class CI_DB_cubrid_driver      extends CI_DB{};
 // class CI_DB_ibase_driver       extends CI_DB{};
 // class CI_DB_mssql_driver       extends CI_DB{};
@@ -112,7 +114,7 @@ class CI_DB_mysqli_driver      extends CI_DB{};
 // class CI_DB_pdo_mysql_driver   extends CI_DB{};
 // class CI_DB_pdo_odbc_driver    extends CI_DB{};
 // class CI_DB_pdo_sqlite_driver  extends CI_DB{};
-// class CI_DB_postgre_driver     extends CI_DB{};
+class CI_DB_postgre_driver     extends CI_DB{};
 // class CI_DB_sqlite_driver      extends CI_DB{};
 // class CI_DB_sqlite3_driver     extends CI_DB{};
 // class CI_DB_sqlsrv_driver      extends CI_DB{};
@@ -145,9 +147,9 @@ class CI_DB extends CI_DB_query_builder{};
  * -property CI_DB_mysql_driver       $db
  * -property CI_DB_mysql_forge        $dbforge
  * -property CI_DB_mysql_utility      $dbutil
- * @property CI_DB_mysqli_driver      $db
- * @property CI_DB_mysqli_forge       $dbforge
- * @property CI_DB_mysqli_utility     $dbutil
+ * -property CI_DB_mysqli_driver      $db
+ * -property CI_DB_mysqli_forge       $dbforge
+ * -property CI_DB_mysqli_utility     $dbutil
  * -property CI_DB_oci8_driver        $db
  * -property CI_DB_oci8_forge         $dbforge
  * -property CI_DB_oci8_utility       $dbutil
@@ -175,9 +177,9 @@ class CI_DB extends CI_DB_query_builder{};
  * -property CI_DB_pdo_sqlite_driver  $db
  * -property CI_DB_pdo_sqlite_forge   $dbforge
  * -property CI_DB_pdo_sqlsrv_forge   $dbutil
- * -property CI_DB_postgre_driver     $db
- * -property CI_DB_postgre_forge      $dbforge
- * -property CI_DB_postgre_utility    $dbutil
+ * @property CI_DB_postgre_driver     $db
+ * @property CI_DB_postgre_forge      $dbforge
+ * @property CI_DB_postgre_utility    $dbutil
  * -property CI_DB_sqlite_driver      $db
  * -property CI_DB_sqlite_forge       $dbforge
  * -property CI_DB_sqlite_utility     $dbutil

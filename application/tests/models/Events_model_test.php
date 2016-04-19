@@ -4,11 +4,12 @@
  * User: DaikiTakeuchi
  * Date: 2016/04/12
  * Time: 18:41
+ * @property Events_model $events_model
+ * @property Invitation_model $invitation_model
+ * @property Users_model $users_model
  */
-
 class Events_model_test extends TestCase
 {
-
     public static function setUpBeforeClass()
     {
         parent::setUpBeforeClass();
