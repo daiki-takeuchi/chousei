@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Users
+ * Class Events
  *
  * @property Events_model $events_model
  */
@@ -112,10 +112,11 @@ class Events extends MY_Controller
     private function _get_title($user)
     {
         if (!isset($user['id'])) {
-            return '予定登録';
+            $title = '予定登録';
         } else {
-            return '予定編集';
+            $title = '予定編集';
         }
+        return $title;
     }
 
     private function _save_event(&$event)

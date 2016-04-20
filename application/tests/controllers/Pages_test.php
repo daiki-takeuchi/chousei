@@ -47,7 +47,7 @@ class Pages_test extends TestCase
 
         // ログインしている場合にindexページへ移動した場合はホームへ遷移
         $this->request('GET', ['Pages', 'index']);
-        $this->assertRedirect('/home', 302);
+        $this->assertRedirect('/events', 302);
 
         // Teardown ログアウト
         $this->request('GET', 'logout');
@@ -64,11 +64,11 @@ class Pages_test extends TestCase
         ];
         // ログインするとホームに遷移する
         $this->request('POST', '/', $data);
-        $this->assertRedirect('/home', 302);
+        $this->assertRedirect('/events', 302);
 
         // ログイン状態でログイン画面に遷移するとホームに遷移する
         $this->request('GET', '/');
-        $this->assertRedirect('/home', 302);
+        $this->assertRedirect('/events', 302);
 
         // Teardown ログアウト
         $this->request('GET', 'logout');
@@ -105,31 +105,10 @@ class Pages_test extends TestCase
     /**
      * @test
      */
-    public function ホームに遷移()
-    {
-        $data = [
-            'email' => 'email1@example.com',
-            'password' => 'password',
-        ];
-
-        // ログインするとホームに遷移する
-        $this->request('POST', '/', $data);
-
-        // ログイン状態でホーム画面に遷移するとホームに遷移する
-        $output = $this->request('GET', 'home');
-        $this->assertContains('<title>ホーム | 調整くん</title>', $output);
-
-        // Teardown ログアウト
-        $this->request('GET', 'logout');
-    }
-
-    /**
-     * @test
-     */
     public function ログインしてない場合にホームに遷移するとログインにリダイレクト()
     {
         // ログインしてない場合にホームに遷移するとログインにリダイレクトする
-        $this->request('GET', 'home');
+        $this->request('GET', 'events');
         $this->assertRedirect('/', 302);
     }
 

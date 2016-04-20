@@ -99,6 +99,12 @@
 class CI_Controller{};
 class MY_Controller extends CI_Controller{};
 
+/**
+ * @property array                  $template_dir
+ * @property string                 $compile_dir
+ */
+class Smarty{};
+
 // Comment out and edit dbdriver class if QueryBuilder is on.
 //class CI_DB_mysqli_driver      extends CI_DB{};
 // class CI_DB_cubrid_driver      extends CI_DB{};

@@ -219,3 +219,24 @@ footer ul li {
     padding: 14px 15px 10px 15px;
     text-align: left;
 }
+
+.rd3 {
+    border-radius: 3px;
+}
+
+.rd5 {
+    border-radius: 5px;
+}
+
+.rd8 {
+    border-radius: 8px;
+}
+
+span.must {
+    background-color: #cc0000;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    line-height: 1.4;
+    padding: 2px 3px;
+}

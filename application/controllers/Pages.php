@@ -11,22 +11,13 @@ class Pages extends MY_Controller
     {
         // ログインしている場合はホームに移動
         if($this->session->userdata("is_logged_in")) {
-            redirect(site_url().'home');
+            redirect(site_url().'events');
         }
         if (isset($_POST)) {
             $this->_login_validation();
         }
 
         $this->display('pages/login.tpl');
-    }
-
-    public function home()
-    {
-        // ログインしてない場合はログイン画面に移動
-        if(!$this->session->userdata("is_logged_in")) {
-            redirect(site_url());
-        }
-        $this->display('pages/home.tpl');
     }
 
     public function logout() {
@@ -44,7 +35,7 @@ class Pages extends MY_Controller
                 "is_logged_in" => 1
             );
             $this->session->set_userdata($data);
-            redirect(site_url().'home');
+            redirect(site_url().'events');
         }
     }
 }
