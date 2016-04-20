@@ -21,11 +21,6 @@ class Events extends MY_Controller
 
     public function index()
     {
-        // 管理者じゃない場合はログインページに移動
-        if (!$this->admin) {
-            redirect(site_url());
-        }
-
         $offset = $this->uri->segment(3 ,0);
         // 登録されているデータを全件取得
         $data['events'] = $this->events_model->get_events($offset);

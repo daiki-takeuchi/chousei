@@ -5,11 +5,14 @@
 {block name=main_contents}
     <div class="panel panel-default">
         <div class="panel-heading">
+            {if $admin}
             <div align="right" style="float: right;">
             <a href="{site_url}events/create" style="font-size: small">
                 <span class="glyphicon glyphicon-plus-sign"></span> 予定を追加
             </a>
-            </div>予定一覧
+            </div>
+            {/if}
+            予定一覧
             <div style="clear: both;"></div><!-- 回りこみ解除 -->
         </div>
         <div class="panel-body">
