@@ -23,116 +23,18 @@
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
                             <input type="text" class="form-control" name="date" placeholder="日程"
-                                   value="{if isset($event_item.start_time)}{$event_item.start_time}{/if}" autocomplete="off" />
+                                   value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%Y/%m/%d"}{/if}" autocomplete="off" />
                         </div>
                     </div>
                     <div class="col-xs-7 col-md-2 col-lg-2">
                         <table>
                             <tr>
                                 <td style="padding-top: 7px;">
-                                    <select name="time">
-                                        <option value="00:00" >0:00</option>
-                                        <option value="00:30" >0:30</option>
-                                        <option value="01:00" >1:00</option>
-                                        <option value="01:30" >1:30</option>
-                                        <option value="02:00" >2:00</option>
-                                        <option value="02:30" >2:30</option>
-                                        <option value="03:00" >3:00</option>
-                                        <option value="03:30" >3:30</option>
-                                        <option value="04:00" >4:00</option>
-                                        <option value="04:30" >4:30</option>
-                                        <option value="05:00" >5:00</option>
-                                        <option value="05:30" >5:30</option>
-                                        <option value="06:00" >6:00</option>
-                                        <option value="06:30" >6:30</option>
-                                        <option value="07:00" >7:00</option>
-                                        <option value="07:30" >7:30</option>
-                                        <option value="08:00" >8:00</option>
-                                        <option value="08:30" >8:30</option>
-                                        <option value="09:00" >9:00</option>
-                                        <option value="09:30" >9:30</option>
-                                        <option value="10:00" >10:00</option>
-                                        <option value="10:30" >10:30</option>
-                                        <option value="11:00" >11:00</option>
-                                        <option value="11:30" >11:30</option>
-                                        <option value="12:00" >12:00</option>
-                                        <option value="12:30" >12:30</option>
-                                        <option value="13:00" >13:00</option>
-                                        <option value="13:30" >13:30</option>
-                                        <option value="14:00" >14:00</option>
-                                        <option value="14:30" >14:30</option>
-                                        <option value="15:00" >15:00</option>
-                                        <option value="15:30" >15:30</option>
-                                        <option value="16:00" >16:00</option>
-                                        <option value="16:30" >16:30</option>
-                                        <option value="17:00" >17:00</option>
-                                        <option value="17:30" >17:30</option>
-                                        <option value="18:00" >18:00</option>
-                                        <option value="18:30" >18:30</option>
-                                        <option value="19:00" selected>19:00</option>
-                                        <option value="19:30" >19:30</option>
-                                        <option value="20:00" >20:00</option>
-                                        <option value="20:30" >20:30</option>
-                                        <option value="21:00" >21:00</option>
-                                        <option value="21:30" >21:30</option>
-                                        <option value="22:00" >22:00</option>
-                                        <option value="22:30" >22:30</option>
-                                        <option value="23:00" >23:00</option>
-                                        <option value="23:30" >23:30</option>
-                                    </select>
+                                    {html_options name=start_time values=$times output=$times selected=$event_item.start_time|date_format:"%H:%M"}
                                 </td>
                                 <td style="padding-bottom: 9px;margin-top: 0">&nbsp;〜&nbsp;</td>
                                 <td style="padding-top: 7px;">
-                                    <select>
-                                        <option value="00:00" >0:00</option>
-                                        <option value="00:30" >0:30</option>
-                                        <option value="01:00" >1:00</option>
-                                        <option value="01:30" >1:30</option>
-                                        <option value="02:00" >2:00</option>
-                                        <option value="02:30" >2:30</option>
-                                        <option value="03:00" >3:00</option>
-                                        <option value="03:30" >3:30</option>
-                                        <option value="04:00" >4:00</option>
-                                        <option value="04:30" >4:30</option>
-                                        <option value="05:00" >5:00</option>
-                                        <option value="05:30" >5:30</option>
-                                        <option value="06:00" >6:00</option>
-                                        <option value="06:30" >6:30</option>
-                                        <option value="07:00" >7:00</option>
-                                        <option value="07:30" >7:30</option>
-                                        <option value="08:00" >8:00</option>
-                                        <option value="08:30" >8:30</option>
-                                        <option value="09:00" >9:00</option>
-                                        <option value="09:30" >9:30</option>
-                                        <option value="10:00" >10:00</option>
-                                        <option value="10:30" >10:30</option>
-                                        <option value="11:00" >11:00</option>
-                                        <option value="11:30" >11:30</option>
-                                        <option value="12:00" >12:00</option>
-                                        <option value="12:30" >12:30</option>
-                                        <option value="13:00" >13:00</option>
-                                        <option value="13:30" >13:30</option>
-                                        <option value="14:00" >14:00</option>
-                                        <option value="14:30" >14:30</option>
-                                        <option value="15:00" >15:00</option>
-                                        <option value="15:30" >15:30</option>
-                                        <option value="16:00" >16:00</option>
-                                        <option value="16:30" >16:30</option>
-                                        <option value="17:00" >17:00</option>
-                                        <option value="17:30" >17:30</option>
-                                        <option value="18:00" >18:00</option>
-                                        <option value="18:30" >18:30</option>
-                                        <option value="19:00">19:00</option>
-                                        <option value="19:30" >19:30</option>
-                                        <option value="20:00" >20:00</option>
-                                        <option value="20:30" >20:30</option>
-                                        <option value="21:00" selected >21:00</option>
-                                        <option value="21:30" >21:30</option>
-                                        <option value="22:00" >22:00</option>
-                                        <option value="22:30" >22:30</option>
-                                        <option value="23:00" >23:00</option>
-                                        <option value="23:30" >23:30</option>
-                                    </select>
+                                    {html_options name=end_time values=$times output=$times selected=$event_item.end_time|date_format:"%H:%M"}
                                 </td>
                             </tr>
                         </table>
@@ -149,13 +51,9 @@
                     </div>
                 </div>
                 <div class="from-group">
-                    <label for="description">説明</label>
-                    <div class='input-group'>
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-envelope"></span>
-                        </span>
-                        <input type="text" class="form-control" name="description" placeholder="説明"
-                               value="{if isset($event_item.description)}{$event_item.description}{/if}" autocomplete="off" />
+                    <label for="description">備考</label>
+                    <div class='input-group' style="width: 100%;">
+                        <textarea class="form-control" name="description" placeholder="備考">{if isset($event_item.description)}{$event_item.description}{/if}</textarea>
                     </div>
                 </div>
             </div>
