@@ -17,18 +17,30 @@
         </div>
         <div class="panel-body">
             <div class="row">
-            {foreach from=$events item=events_item}
+            {foreach from=$events item=event_item}
                 <div class="col-xs-12 col-sm-6" style="padding-top:5px;">
-                    <a class="list-group-item" href="{site_url}events/edit/{$events_item['id']}">
+                    <a class="list-group-item" href="{site_url}events/edit/{$event_item['id']}">
                         <table style="word-break: break-all;">
-                            <tr style="height:0"><td width="75px"></td><td width="100%"></td></tr>
                             <tr>
-                                <td>
-                                    <div class="panel" style="width: 55px height: 55px;">a
-                                    </div>
-                                </td>
+                                <td></td>
                                 <td style="padding-top: 7px; padding-left: 15px;">
-                                    <p>{$events_item['title']|escape}</p>
+                                    <span>{$event_item['title']|escape}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="padding-top: 7px; padding-left: 15px;">
+                                    <span>{$event_item['start_time']|date_format:"%Y/%m/%d"}</span>
+                                    <span>&nbsp;</span>
+                                    <span>{$event_item['start_time']|date_format:"%H:%M"}</span>
+                                    <span>&nbsp;～&nbsp;</span>
+                                    <span>{$event_item['end_time']|date_format:"%H:%M"}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="padding-top: 7px; padding-left: 15px;">
+                                    <p>{$event_item['place']|escape}</p>
                                 </td>
                             </tr>
                         </table>

@@ -45,5 +45,27 @@ $config = array(
             'label' => 'パスワード',
             'rules' => 'required|sha1|trim'
         )
+    ),
+    'events' => array(
+        array(
+            'field' => 'title',
+            'label' => 'タイトル',
+            'rules' => 'required|trim'
+        ),
+        array(
+            'field' => 'date',
+            'label' => '日付',
+            'rules' => 'required|date_valid'
+        ),
+        array(
+            'field' => 'start_time',
+            'label' => '開始時間',
+            'rules' => 'required|time_valid'
+        ),
+        array(
+            'field' => 'end_time',
+            'label' => '終了時間',
+            'rules' => 'required|time_valid'
+        )
     )
 );

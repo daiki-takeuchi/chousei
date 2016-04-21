@@ -36,4 +36,50 @@ class MY_Form_validation extends CI_Form_validation
         }
         return true;
     }
+
+    /**
+     * Validate yyyy/mm/dd
+     */
+    function date_valid($date)
+    {
+        $parts = explode("/", $date);
+        if (count($parts) == 3) {
+            if (checkdate($parts[1], $parts[2], $parts[0]))
+            {
+                return true;
+            }
+        }
+        $this->set_message('date_valid', '%s欄は yyyy/mm/dd形式である必要があります。');
+        return false;
+    }
+
+    /**
+     * Validate HH:MM
+     */
+    function time_valid($time)
+    {
+        $parts = explode(':', $time);
+        if (count($parts) != 2) {
+            $this->set_message('time_valid', '%s欄は HH:MM形式である必要があります。');
+            return false;
+        }
+        list($hh, $mm) = $parts;
+        if (!is_numeric($hh) || !is_numeric($mm))
+        {
+            $this->set_message('time_valid', '%s欄が数字ではありません。');
+            return false;
+        }
+        else if ((int) $hh > 24 || (int) $mm > 59)
+        {
+            $this->set_message('time_valid', '%s欄の時刻が正しくありません。');
+            return false;
+        }
+        else if (mktime((int) $hh, (int) $mm) === false)
+        {
+            $this->set_message('time_valid', '%s欄の時刻が正しくありません。');
+            return false;
+        }
+
+        return true;
+    }
 }

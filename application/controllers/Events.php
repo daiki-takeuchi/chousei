@@ -103,11 +103,16 @@ class Events extends MY_Controller
         $mode = $this->uri->segment(2 ,0);
 
         $event['title'] = $this->input->post('title');
+        if($this->input->post('date')) {
+            $event['start_time'] = $this->input->post('date') . ' ' . $this->input->post('start_time');
+            $event['end_time'] = $this->input->post('date') . ' ' . $this->input->post('end_time');
+        }
+        $event['place'] = $this->input->post('place');
         $event['description'] = $this->input->post('description');
 
-//        if ($this->form_validation->run('events/'.$mode) !== FALSE) {
+        if ($this->form_validation->run('events') !== FALSE) {
             $this->events_model->save($event);
             redirect('/events', 'refresh');
-//        }
+        }
     }
 }

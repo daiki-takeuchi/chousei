@@ -26,7 +26,11 @@
 {block name=carousel}{/block}
 {block name=jumbotron}{/block}
 <div class="container">
-    {include file='templates/error_messages.tpl'}
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {include file='templates/error_messages.tpl'}
+        </div>
+    </div>
     {block name=main_contents}{/block}
 </div>
 {include file='templates/footer.tpl'}

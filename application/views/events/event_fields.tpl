@@ -32,7 +32,7 @@
                                 <td>
                                     <div class='input-group time'>
                                         <input type="text" class="form-control time" name="start_time"
-                                               value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%H:%M"}{/if}" />
+                                               value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%H:%M"}{else}18:00{/if}" />
                                         <span class="input-group-addon">
                                             <span class="caret"></span>
                                         </span>
@@ -42,7 +42,7 @@
                                 <td>
                                     <div class='input-group time'>
                                         <input type="text" class="form-control time" name="end_time"
-                                               value="{if isset($event_item.end_time)}{$event_item.end_time|date_format:"%H:%M"}{/if}" />
+                                               value="{if isset($event_item.end_time)}{$event_item.end_time|date_format:"%H:%M"}{else}20:00{/if}" />
                                         <span class="input-group-addon time" style="width:5px;">
                                             <span class="caret"></span>
                                         </span>
@@ -58,14 +58,14 @@
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-pushpin"></span>
                         </span>
-                        <input type="text" class="form-control" name="place" placeholder="場所"
+                        <input type="text" class="form-control" name="place" placeholder="場所を入力してください。"
                                value="{if isset($event_item.place)}{$event_item.place}{/if}" autocomplete="off" />
                     </div>
                 </div>
                 <div class="from-group">
                     <label for="description">備考</label>
                     <div class='input-group' style="width: 100%;">
-                        <textarea class="form-control" name="description" placeholder="備考">{if isset($event_item.description)}{$event_item.description}{/if}</textarea>
+                        <textarea class="form-control" name="description" placeholder="備考を入力してください。">{if isset($event_item.description)}{$event_item.description}{/if}</textarea>
                     </div>
                 </div>
             </div>
