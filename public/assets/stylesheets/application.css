@@ -240,3 +240,7 @@ span.must {
     line-height: 1.4;
     padding: 2px 3px;
 }
+
+.form-control.time {
+    width: 62px;
+}

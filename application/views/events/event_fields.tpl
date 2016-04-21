@@ -17,24 +17,36 @@
                 <span class="must rd5">必須</span>
                 <label for="date">日程</label>
                 <div class="row">
-                    <div class="from-group col-xs-5 col-md-5 col-lg-5">
-                        <div class='input-group'>
+                    <div class="from-group col-xs-12 col-sm-5 col-md-5 col-lg-5">
+                        <div class='input-group date'>
                             <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-calendar"></span>
+                                <span class="glyphicon glyphicon-th"></span>
                             </span>
                             <input type="text" class="form-control" name="date" placeholder="日程"
-                                   value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%Y/%m/%d"}{/if}" autocomplete="off" />
+                                   value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%Y/%m/%d"}{/if}" />
                         </div>
                     </div>
-                    <div class="col-xs-7 col-md-2 col-lg-2">
+                    <div class="from-group col-xs-12 col-sm-7 col-md-2 col-lg-2">
                         <table>
                             <tr>
-                                <td style="padding-top: 7px;">
-                                    {html_options name=start_time values=$times output=$times selected=$event_item.start_time|date_format:"%H:%M"}
+                                <td>
+                                    <div class='input-group time'>
+                                        <input type="text" class="form-control time" name="start_time"
+                                               value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%H:%M"}{/if}" />
+                                        <span class="input-group-addon">
+                                            <span class="caret"></span>
+                                        </span>
+                                    </div>
                                 </td>
-                                <td style="padding-bottom: 9px;margin-top: 0">&nbsp;〜&nbsp;</td>
-                                <td style="padding-top: 7px;">
-                                    {html_options name=end_time values=$times output=$times selected=$event_item.end_time|date_format:"%H:%M"}
+                                <td>&nbsp;～&nbsp;</td>
+                                <td>
+                                    <div class='input-group time'>
+                                        <input type="text" class="form-control time" name="end_time"
+                                               value="{if isset($event_item.end_time)}{$event_item.end_time|date_format:"%H:%M"}{/if}" />
+                                        <span class="input-group-addon time" style="width:5px;">
+                                            <span class="caret"></span>
+                                        </span>
+                                    </div>
                                 </td>
                             </tr>
                         </table>

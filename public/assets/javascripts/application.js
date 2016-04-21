@@ -8,8 +8,12 @@ $(function(){
 		return;
 	}
 
-	$('.calendar').datepicker({
-		dateFormat: 'yy/mm/dd',
+	$('.input-group.date').datepicker({
+		format: "yyyy/mm/dd",
+		startDate: "today",
+		language: "ja",
+		autoclose: true,
+		todayHighlight: true
 	});
 });
 
@@ -19,10 +23,14 @@ $(function(){
 		return;
 	}
 
-	var tp = $('.timepicker').timepicker({'minTime': '8:00' ,'maxTime': '7:30' ,'timeFormat': 'H:i' ,'step':'30' });
-
-	$('.tp-trigger').click(function(e){
+	$('.input-group.time').click(function(e){
 		e.stopPropagation();
-		tp.timepicker('show');
+		$(this).children('.form-control.time').timepicker({
+			minTime: "8:00",
+			maxTime: "7:30",
+			timeFormat: "H:i",
+			step: "30"
+		}).timepicker('show');
 	});
+
 });
