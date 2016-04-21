@@ -23,7 +23,7 @@
                                 <span class="glyphicon glyphicon-th"></span>
                             </span>
                             <input type="text" class="form-control" name="date" placeholder="日程"
-                                   value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%Y/%m/%d"}{/if}" />
+                                   value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%Y/%m/%d"}{/if}" readonly />
                         </div>
                     </div>
                     <div class="from-group col-xs-12 col-sm-7 col-md-2 col-lg-2">

@@ -241,6 +241,10 @@ span.must {
     padding: 2px 3px;
 }
 
+.input-group.date input[type="text"][readonly] {
+    background:#fff;
+}
+
 .form-control.time {
     width: 62px;
 }
