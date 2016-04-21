@@ -40,22 +40,6 @@ class Events extends MY_Controller
         $this->index();
     }
 
-    public function view($id = NULL)
-    {
-        $data['event_item'] = $this->events_model->find($id);
-
-        if (empty($data['event_item'])) {
-            $this->display('events/not_found.tpl');
-            return;
-        }
-
-        $data['title'] = $data['event_item']['title'];
-
-        $this->smarty->assign($data);
-        $this->display('events/view.tpl');
-
-    }
-
     public function create()
     {
         $this->edit();
@@ -123,7 +107,7 @@ class Events extends MY_Controller
 
 //        if ($this->form_validation->run('events/'.$mode) !== FALSE) {
             $this->events_model->save($event);
-            redirect('/events/' . $event['id'], 'refresh');
+            redirect('/events', 'refresh');
 //        }
     }
 }
