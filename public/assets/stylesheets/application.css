@@ -245,6 +245,10 @@ span.must {
     background:#fff;
 }
 
-.form-control.time {
+.form-control.clockpicker {
     width: 62px;
+}
+
+.input-group.clockpicker input[type="text"][readonly] {
+    background:#fff;
 }

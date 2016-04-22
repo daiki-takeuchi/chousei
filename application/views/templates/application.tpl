@@ -10,14 +10,14 @@
     <link rel="stylesheet" href="{site_url}assets/stylesheets/bootstrap.min.css"/>
     <link rel="stylesheet" href="{site_url}assets/stylesheets/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="{site_url}assets/stylesheets/bootstrap-datepicker.min.css"/>
-    <link rel="stylesheet" href="{site_url}assets/stylesheets/jquery.timepicker.css" />
+    <link rel="stylesheet" href="{site_url}assets/stylesheets/bootstrap-clockpicker.min.css" />
     <link rel="stylesheet" href="{site_url}assets/stylesheets/application.css"/>
     <script src="{site_url}assets/javascripts/jquery-1.11.3.js"></script>
     <script src="{site_url}assets/javascripts/jquery-ui-1.11.4.custom.js"></script>
     <script src="{site_url}assets/javascripts/bootstrap.min.js"></script>
     <script src="{site_url}assets/javascripts/bootstrap-datepicker.min.js"></script>
     <script src="{site_url}assets/javascripts/bootstrap-datepicker.ja.min.js"></script>
-    <script src="{site_url}assets/javascripts/jquery.timepicker.min.js"></script>
+    <script src="{site_url}assets/javascripts/bootstrap-clockpicker.min.js"></script>
     <script src="{site_url}assets/javascripts/application.js"></script>
     {include file='templates/shim.tpl'}
 </head>

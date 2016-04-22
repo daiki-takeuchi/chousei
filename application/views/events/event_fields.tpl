@@ -30,22 +30,22 @@
                         <table>
                             <tr>
                                 <td>
-                                    <div class='input-group time'>
-                                        <input type="text" class="form-control time" name="start_time"
-                                               value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%H:%M"}{else}18:00{/if}" />
-                                        <span class="input-group-addon">
-                                            <span class="caret"></span>
-                                        </span>
+                                    <div class="input-group clockpicker">
+                                        <input type="text" class="form-control clockpicker" name="start_time"
+                                               value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%H:%M"}{else}18:00{/if}" readonly />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-time"></span>
+                                            </span>
                                     </div>
                                 </td>
                                 <td>&nbsp;～&nbsp;</td>
                                 <td>
-                                    <div class='input-group time'>
-                                        <input type="text" class="form-control time" name="end_time"
-                                               value="{if isset($event_item.end_time)}{$event_item.end_time|date_format:"%H:%M"}{else}20:00{/if}" />
-                                        <span class="input-group-addon time" style="width:5px;">
-                                            <span class="caret"></span>
-                                        </span>
+                                    <div class="input-group clockpicker">
+                                        <input type="text" class="form-control clockpicker" name="end_time"
+                                               value="{if isset($event_item.end_time)}{$event_item.end_time|date_format:"%H:%M"}{else}20:00{/if}" readonly />
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-time"></span>
+                                            </span>
                                     </div>
                                 </td>
                             </tr>

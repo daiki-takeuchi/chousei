@@ -19,18 +19,12 @@ $(function(){
 
 $(function(){
 	/*-- 時間リスト --*/
-	if(! pluginExists("timepicker")){
+	if(! pluginExists("clockpicker")){
 		return;
 	}
 
-	$('.input-group.time').click(function(e){
-		e.stopPropagation();
-		$(this).children('.form-control.time').timepicker({
-			minTime: "8:00",
-			maxTime: "7:30",
-			timeFormat: "H:i",
-			step: "30"
-		}).timepicker('show');
+	$('.clockpicker').clockpicker({
+		donetext: '完了'
 	});
 
 });
