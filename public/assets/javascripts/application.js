@@ -24,7 +24,7 @@ $(function(){
 	}
 
 	$('.clockpicker').clockpicker({
-		donetext: '完了'
+		autoclose: true
 	});
 
 });
