@@ -8,7 +8,8 @@
                 <button class="btn btn-primary">登録</button>
                 <a class="btn btn-primary" href="{site_url}events">戻る</a>
                 {if $admin && isset($event_item.id)}
-                <a type="button" class="btn btn-danger" href="{site_url}events/delete/{$event_item.id}">削除</a>
+{*                <a class="btn btn-danger delete-alert" href="{site_url}events/delete/{$event_item.id}">削除</a>*}
+                <a class="btn btn-default delete-alert" href="#" data-href="{site_url}events/delete/{$event_item.id}">削除</a>
                 {/if}
             </div>
         </div>
