@@ -233,16 +233,18 @@ footer ul li {
 }
 
 span.must {
-    background-color: #cc0000;
+    background-color: #ee6557;
     color: #fff;
     display: inline-block;
     font-size: 10px;
-    line-height: 1.4;
-    padding: 2px 3px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 3px 4px;
+    margin: 3px 3px 3px 0;
 }
 
 .input-group.date input[type="text"][readonly] {
-    background:#fff;
+    background: #fff;
 }
 
 .form-control.clockpicker {
@@ -250,5 +252,5 @@ span.must {
 }
 
 .input-group.clockpicker input[type="text"][readonly] {
-    background:#fff;
+    background: #fff;
 }
