@@ -19,7 +19,11 @@
             <div class="row">
             {foreach from=$events item=event_item}
                 <div class="col-xs-12 col-sm-6" style="padding-top:5px;">
+                    {if $admin}
                     <a class="list-group-item" href="{site_url}events/edit/{$event_item['id']}">
+                    {else}
+                    <li class="list-group-item">
+                    {/if}
                         <table style="word-break: break-all;">
                             <tr>
                                 <td></td>
@@ -44,7 +48,7 @@
                                 </td>
                             </tr>
                         </table>
-                    </a>
+                    {if $admin}</a>{else}</li>{/if}
                 </div>
             {/foreach}
             </div>
