@@ -8,7 +8,7 @@
                 <button name="submit" class="btn btn-primary">登録</button>
                 <a class="btn btn-primary" onclick="history.back();">戻る</a>
                 {if $admin && isset($user_item.id) && $user_id !== $user_item.id}
-                <a type="button" class="btn btn-danger" href="{site_url}users/delete/{$user_item.id}">削除</a>
+                <a class="btn btn-default delete-alert" href="#" data-href="{site_url}users/delete/{$user_item.id}">削除</a>
                 {/if}
             </div>
         </div>

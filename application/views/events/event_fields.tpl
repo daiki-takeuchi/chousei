@@ -11,7 +11,7 @@
                             <span class="glyphicon glyphicon-list-alt"></span>
                         </span>
                         <input type="text" class="form-control" name="title" placeholder="タイトル"
-                               value="{if isset($event_item.title)}{$event_item.title}{/if}" autocomplete="off" />
+                               value="{if isset($event_item.title)}{$event_item.title}{/if}" />
                     </div>
                 </div>
                 <span class="must rd5">必須</span>
@@ -59,7 +59,18 @@
                             <span class="glyphicon glyphicon-pushpin"></span>
                         </span>
                         <input type="text" class="form-control" name="place" placeholder="場所を入力してください。"
-                               value="{if isset($event_item.place)}{$event_item.place}{/if}" autocomplete="off" />
+                               value="{if isset($event_item.place)}{$event_item.place}{/if}" />
+                    </div>
+                </div>
+                <div class="from-group">
+                    <span class="must rd5">必須</span>
+                    <label for="number_of_people">募集人数</label>
+                    <div class='input-group'>
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-user"></span>
+                        </span>
+                        <input type="number" class="form-control" name="number_of_people" min="1" placeholder="募集人数を入力してください。"
+                               value="{if isset($event_item.number_of_people)}{$event_item.number_of_people}{else}15{/if}" />
                     </div>
                 </div>
                 <div class="from-group">

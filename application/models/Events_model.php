@@ -4,6 +4,7 @@ class Events_model extends MY_Model
 {
     protected $table = 'events';
     protected $has_one = array('invitation' => 'events.id = invitation.event_id');
+    protected $per_page = 10;
 
     function __construct(){
         parent::__construct();

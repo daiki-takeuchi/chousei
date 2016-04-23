@@ -66,6 +66,11 @@ $config = array(
             'field' => 'end_time',
             'label' => '終了時間',
             'rules' => 'required|time_valid'
+        ),
+        array(
+            'field' => 'number_of_people',
+            'label' => '募集人数',
+            'rules' => 'required|greater_than[0]'
         )
     )
 );

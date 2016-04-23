@@ -69,6 +69,13 @@ class MY_Model extends CI_Model
         $pagination = $this->generate_pagination->get_links($path, $total_rows, $this->per_page);
 
         return $pagination;
+    }
 
+    public function get_max_id()
+    {
+        $this->db->order_by('id', 'desc');
+        $this->db->limit(1);
+        $query = $this->db->get($this->table);
+        return $query->row_array()['id'];
     }
 }

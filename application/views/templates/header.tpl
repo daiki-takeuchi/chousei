@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top navbar-inverse" xmlns="http://www.w3.org/1999/html">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" id="logo" href="{site_url}home">調整くん</a>
+            <a class="navbar-brand" id="logo" href="{site_url}">調整くん</a>
 
             {if $is_login}
             <!--トグルボタン-->
@@ -32,8 +32,6 @@
                             <li><a href="{site_url}logout"><span class="glyphicon glyphicon-log-out"></span>　ログアウト</a></li>
                         </ul>
                     </li>
-                {else}
-{*                    <li><a href="{site_url}users/create"><span class="glyphicon glyphicon-plus-sign"></span>　ユーザー登録</a></li> *}
                 {/if}
             </ul>
         </div>

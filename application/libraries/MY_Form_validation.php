@@ -69,7 +69,7 @@ class MY_Form_validation extends CI_Form_validation
             $this->set_message('time_valid', '%s欄が数字ではありません。');
             return false;
         }
-        else if ((int) $hh > 24 || (int) $mm > 59)
+        else if ((int) $hh > 24 || (int) $mm > 59 || (int) $hh < 0 || (int) $mm < 0)
         {
             $this->set_message('time_valid', '%s欄の時刻が正しくありません。');
             return false;

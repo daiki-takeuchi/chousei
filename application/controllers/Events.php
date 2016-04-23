@@ -53,6 +53,11 @@ class Events extends MY_Controller
         }
 
         $event = $this->_get_event($id);
+        if(empty($event) && !empty($id)) {
+            $this->display('events/not_found.tpl');
+            return;
+        }
+        
         $data['title'] = $this->_get_title($event);
 
         if ($_POST) {
@@ -108,6 +113,7 @@ class Events extends MY_Controller
             $event['end_time'] = $this->input->post('date') . ' ' . $this->input->post('end_time');
         }
         $event['place'] = $this->input->post('place');
+        $event['number_of_people'] = $this->input->post('number_of_people');
         $event['description'] = $this->input->post('description');
 
         if ($this->form_validation->run('events') !== FALSE) {
