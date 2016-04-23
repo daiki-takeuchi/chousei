@@ -45,6 +45,23 @@ class Events_test extends TestCase
     /**
      * @test
      */
+    public function 一般ユーザーが一覧画面に遷移できる()
+    {
+        // 一般ユーザーでログイン
+        $data = ['email' => 'email1@example.com','password' => 'password'];
+        $this->request('POST', '/', $data);
+
+        // Verify
+        $output = $this->request('GET', ['Events', 'index']);
+        $this->assertContains('予定一覧', $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
     public function 存在しないイベントの場合は存在しませんページに遷移する()
     {
         // 管理者でログイン

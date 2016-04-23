@@ -17,13 +17,19 @@ class Events extends MY_Controller
         if(!$this->is_login) {
             redirect(site_url());
         }
+        $this->events_model->setAdmin($this->admin);
     }
 
     public function index()
     {
         $offset = $this->uri->segment(3 ,0);
-        // 登録されているデータを全件取得
-        $data['events'] = $this->events_model->get_events($offset);
+        if($this->admin) {
+            // 登録されているデータを全件取得
+            $data['events'] = $this->events_model->get_events($offset);
+        } else {
+            // 自分が参加できるデータを取得
+            $data['events'] = $this->events_model->find_by_user_id($this->user_id, $offset);
+        }
 
         // paginationの作成
         $data['pagination'] = $this->events_model->get_pagination();

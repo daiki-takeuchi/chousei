@@ -26,14 +26,12 @@
                     {/if}
                         <table style="word-break: break-all;">
                             <tr>
-                                <td></td>
-                                <td style="padding-top: 7px; padding-left: 15px;">
+                                <td style="padding-left: 15px;">
                                     <span>{$event_item['title']|escape}</span>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td style="padding-top: 7px; padding-left: 15px;">
+                                <td style="padding-left: 15px;">
                                     <span>{$event_item['start_time']|date_format:"%Y/%m/%d"}</span>
                                     <span>&nbsp;</span>
                                     <span>{$event_item['start_time']|date_format:"%H:%M"}</span>
@@ -42,9 +40,16 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
                                 <td style="padding-top: 7px; padding-left: 15px;">
                                     <p>{$event_item['place']|escape}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left: 15px;">
+                                    <p>
+                                        募集 : {$event_item['number_of_people']}&nbsp;&nbsp;|&nbsp;
+                                        残り : {$event_item['number_of_people'] - count($event_item['attendee'])}
+                                    </p>
                                 </td>
                             </tr>
                         </table>
