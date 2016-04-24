@@ -3,18 +3,18 @@
 /**
  * Class Events_model
  *
- * @property Invitation_model $invitation_model
+ * @property Invitations_model $invitations_model
  */
 class Events_model extends MY_Model
 {
     protected $table = 'events';
-    protected $has_one = array('invitation' => 'events.id = invitation.event_id');
+    protected $has_one = array('invitations' => 'events.id = invitations.event_id');
     protected $per_page = 10;
     private $count;
 
     function __construct(){
         parent::__construct();
-        $this->load->model('invitation_model');
+        $this->load->model('invitations_model');
     }
 
     public function setAdmin($admin)
@@ -62,14 +62,14 @@ class Events_model extends MY_Model
     private function _user_query($user_id) {
         $this->db->select($this->table . '.*');
         $this->db->from($this->table);
-        $this->db->join('invitation', $this->has_one['invitation']);
+        $this->db->join('invitations', $this->has_one['invitations']);
         $this->db->where(array('user_id' => $user_id));
         $this->db->order_by('start_time', 'desc');
     }
 
     private function _get_attendee(&$events) {
         foreach ($events as &$event) {
-            $event["attendee"] = $this->invitation_model->get_attendee($event["id"]);
+            $event["attendee"] = $this->invitations_model->get_attendee($event["id"]);
         }
     }
 }

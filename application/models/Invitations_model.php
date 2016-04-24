@@ -1,8 +1,8 @@
 <?php
 
-class Invitation_model extends MY_Model
+class Invitations_model extends MY_Model
 {
-    protected $table = 'invitation';
+    protected $table = 'invitations';
 
     function __construct()
     {

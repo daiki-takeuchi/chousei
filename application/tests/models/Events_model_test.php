@@ -5,7 +5,7 @@
  * Date: 2016/04/12
  * Time: 18:41
  * @property Events_model $events_model
- * @property Invitation_model $invitation_model
+ * @property Invitations_model $invitations_model
  * @property Users_model $users_model
  */
 class Events_model_test extends TestCase
@@ -24,10 +24,10 @@ class Events_model_test extends TestCase
     {
         $this->resetInstance();
         $this->CI->load->model('Events_model');
-        $this->CI->load->model('Invitation_model');
+        $this->CI->load->model('Invitations_model');
         $this->CI->load->model('Users_model');
         $this->events_model = $this->CI->Events_model;
-        $this->invitation_model = $this->CI->Invitation_model;
+        $this->invitations_model = $this->CI->Invitations_model;
         $this->users_model = $this->CI->Users_model;
     }
 
@@ -58,7 +58,7 @@ class Events_model_test extends TestCase
                     'created_at' => date('Y/m/d H:i:s'),
                     'updated_at' => date('Y/m/d H:i:s')
                 );
-                $this->invitation_model->save($invitation);
+                $this->invitations_model->save($invitation);
             }
         }
 
@@ -71,9 +71,9 @@ class Events_model_test extends TestCase
         foreach($events as $event) {
             $this->events_model->delete($event);
         }
-        $invitations = $this->invitation_model->find();
+        $invitations = $this->invitations_model->find();
         foreach($invitations as $invitation) {
-            $this->invitation_model->delete($invitation);
+            $this->invitations_model->delete($invitation);
         }
     }
 

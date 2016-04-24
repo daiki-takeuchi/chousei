@@ -27,20 +27,19 @@
                         <table style="word-break: break-all;">
                             <tr>
                                 <td style="padding-left: 15px;">
-                                    <span>{$event_item['title']|escape}</span>
+                                    <h4>{$event_item['title']|escape}</h4>
                                 </td>
                             </tr>
                             <tr>
                                 <td style="padding-left: 15px;">
-                                    <span>{$event_item['start_time']|date_format:"%Y/%m/%d"}</span>
-                                    <span>&nbsp;</span>
-                                    <span>{$event_item['start_time']|date_format:"%H:%M"}</span>
-                                    <span>&nbsp;～&nbsp;</span>
-                                    <span>{$event_item['end_time']|date_format:"%H:%M"}</span>
+                                    <p>{$event_item['start_time']|date_format:"%Y/%m/%d"}&nbsp;
+                                    {$event_item['start_time']|date_format:"%H:%M"}
+                                    ～
+                                    {$event_item['end_time']|date_format:"%H:%M"}</p>
                                 </td>
                             </tr>
                             <tr>
-                                <td style="padding-top: 7px; padding-left: 15px;">
+                                <td style="padding-left: 15px;">
                                     <p>{$event_item['place']|escape}</p>
                                 </td>
                             </tr>

@@ -93,7 +93,7 @@
  *
  * @property Smarty                   $smarty
  * @property Events_model             $Events_model
- * @property Invitation_model         $Invitation_model
+ * @property Invitations_model        $Invitations_model
  * @property Users_model              $Users_model
  */
 class CI_Controller{};

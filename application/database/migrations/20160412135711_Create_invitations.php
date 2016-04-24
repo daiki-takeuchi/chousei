@@ -5,7 +5,7 @@
  * Created by: Cli for CodeIgniter <https://github.com/kenjis/codeigniter-cli>
  * Created on: 2016/04/12 13:57:11
  */
-class Migration_Create_invitation extends CI_Migration {
+class Migration_Create_invitations extends CI_Migration {
 
 	public function up()
 	{
@@ -38,11 +38,11 @@ class Migration_Create_invitation extends CI_Migration {
 			),
 		));
 		$this->dbforge->add_key('id', TRUE);
-		$this->dbforge->create_table('invitation');
+		$this->dbforge->create_table('invitations');
 	}
 
 	public function down()
 	{
-		$this->dbforge->drop_table('invitation');
+		$this->dbforge->drop_table('invitations');
 	}
 }
