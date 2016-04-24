@@ -11,6 +11,8 @@ class Events_model extends MY_Model
     protected $has_one = array('invitations' => 'events.id = invitations.event_id');
     protected $per_page = 10;
     private $count;
+    private $admin;
+    private $user_id;
 
     function __construct(){
         parent::__construct();
@@ -20,6 +22,11 @@ class Events_model extends MY_Model
     public function setAdmin($admin)
     {
         $this->admin = $admin;
+    }
+
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
     }
 
     public function find_by_user_id($user_id, $offset = FALSE)
@@ -70,6 +77,25 @@ class Events_model extends MY_Model
     private function _get_attendee(&$events) {
         foreach ($events as &$event) {
             $event["attendee"] = $this->invitations_model->get_attendee($event["id"]);
+            $event["attend_count"] = 0;
+            foreach ($event["attendee"] as $item) {
+                if($item["user_id"] == $this->user_id) {
+                    $event["status"] = $item["status"];
+                    if($item["status"] === '0') {
+                        $event["btn-attendance"] = 'default';
+                        $event["btn-absence"] = 'primary';
+                    } elseif ($item["status"] === '1') {
+                        $event["btn-attendance"] = 'primary';
+                        $event["btn-absence"] = 'default';
+                    } else {
+                        $event["btn-attendance"] = 'default';
+                        $event["btn-absence"] = 'default';
+                    }
+                }
+                if($item["status"] === '1') {
+                    $event["attend_count"]++;
+                }
+            }
         }
     }
 }

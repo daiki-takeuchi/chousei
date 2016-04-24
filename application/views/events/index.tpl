@@ -18,41 +18,36 @@
         <div class="panel-body">
             <div class="row">
             {foreach from=$events item=event_item}
-                <div class="col-xs-12 col-sm-6" style="padding-top:5px;">
-                    {if $admin}
-                    <a class="list-group-item" href="{site_url}events/edit/{$event_item['id']}">
-                    {else}
-                    <li class="list-group-item">
-                    {/if}
-                        <table style="word-break: break-all;">
-                            <tr>
-                                <td style="padding-left: 15px;">
-                                    <h4>{$event_item['title']|escape}</h4>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left: 15px;">
-                                    <p>{$event_item['start_time']|date_format:"%Y/%m/%d"}&nbsp;
-                                    {$event_item['start_time']|date_format:"%H:%M"}
-                                    ～
-                                    {$event_item['end_time']|date_format:"%H:%M"}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left: 15px;">
-                                    <p>{$event_item['place']|escape}</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td style="padding-left: 15px;">
-                                    <p>
-                                        募集 : {$event_item['number_of_people']}&nbsp;&nbsp;|&nbsp;
-                                        残り : {$event_item['number_of_people'] - count($event_item['attendee'])}
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-                    {if $admin}</a>{else}</li>{/if}
+                <div class="col-xs-12 col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h4>
+                                {if $admin}<a href="{site_url}events/edit/{$event_item['id']}">{/if}
+                                    {$event_item['title']|escape}
+                                    {if $admin}</a>{/if}
+                            </h4>
+                            <p>{$event_item['start_time']|date_format:"%Y/%m/%d"}&nbsp;
+                                {$event_item['start_time']|date_format:"%H:%M"}
+                                ～
+                                {$event_item['end_time']|date_format:"%H:%M"}
+                            </p>
+                            <p>{$event_item['place']|escape}</p>
+                            <p>{$event_item['description']|escape}</p>
+                            <br />
+                            <p>
+                                募集 : {$event_item['number_of_people']}&nbsp;&nbsp;|&nbsp;
+                                残り : {$event_item['number_of_people'] - $event_item['attend_count']}
+                            </p>
+                        </div>
+                        <div class="panel-footer bg-white">
+                            {if array_key_exists("status", $event_item)}
+                            <a class="btn btn-sm btn-{$event_item["btn-attendance"]}">参加</a>
+                            <a class="btn btn-sm btn-{$event_item["btn-absence"]}">欠席</a>
+                            {else}
+                                <p>このイベントには参加できません。</p>
+                            {/if}
+                        </div>
+                    </div>
                 </div>
             {/foreach}
             </div>

@@ -18,6 +18,7 @@ class Events extends MY_Controller
             redirect(site_url());
         }
         $this->events_model->setAdmin($this->admin);
+        $this->events_model->setUserId($this->user_id);
     }
 
     public function index()

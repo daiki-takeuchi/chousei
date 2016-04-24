@@ -254,3 +254,7 @@ span.must {
 .input-group.clockpicker input[type="text"][readonly] {
     background: #fff;
 }
+
+.bg-white {
+    background: #fff;
+}
