@@ -32,14 +32,14 @@
                                 {$event_item['end_time']|date_format:"%H:%M"}
                             </p>
                             <p>{$event_item['place']|escape}</p>
-                            <p>{$event_item['description']|escape}</p>
+                            <p>{$event_item['description']|escape|nl2br}</p>
                             <br />
                             <p>
                                 募集 : {$event_item['number_of_people']}&nbsp;&nbsp;|&nbsp;
                                 残り : {$event_item['number_of_people'] - $event_item['attend_count']}
                             </p>
                         </div>
-                        <div class="panel-footer bg-white">
+                        <div class="panel-footer bg-white" style="height: 50px;">
                             {if array_key_exists("status", $event_item)}
                             <a class="btn btn-sm btn-{$event_item["btn-attendance"]}">参加</a>
                             <a class="btn btn-sm btn-{$event_item["btn-absence"]}">欠席</a>
