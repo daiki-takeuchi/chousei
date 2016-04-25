@@ -263,6 +263,7 @@ span.fa,span.glyphicon{
     width: 11px;
 }
 
-.btn.active, .btn:active {
-    background: #fff;
+.btn-default:active:focus,
+.btn-default.active:focus {
+    background-color: #fff;
 }
