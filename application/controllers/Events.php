@@ -90,6 +90,18 @@ class Events extends MY_Controller
         redirect('/events', 'refresh');
     }
 
+    public function update_status()
+    {
+        //'*-- Ajax通信の場合のみ処理する
+        if($this->input->is_ajax_request()) {
+            $event_id = $this->input->post('event_id');
+            $status = $this->input->post('status') == null ? null:$this->input->post('status');
+            $user_id = $this->user_id;
+
+            $this->invitations_model->updateState($event_id, $user_id, $status);
+        }
+    }
+
     private function _get_event($id = NULL)
     {
         if ($id === NULL) {

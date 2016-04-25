@@ -41,7 +41,7 @@ class Events_model extends MY_Model
         }
         $query = $this->db->get();
         $events = $query->result_array();
-        $this->_get_attendee($events);
+        $this->_get_all_attendee($events);
         return $events;
     }
 
@@ -52,7 +52,7 @@ class Events_model extends MY_Model
             $this->db->limit($this->per_page, $offset);
         }
         $events = $this->find();
-        $this->_get_attendee($events);
+        $this->_get_all_attendee($events);
         return $events;
     }
 
@@ -66,6 +66,30 @@ class Events_model extends MY_Model
         return $count;
     }
 
+    public function get_attendee(&$event)
+    {
+        $event["attendee"] = $this->invitations_model->get_attendee($event["id"]);
+        $event["attend_count"] = 0;
+        foreach ($event["attendee"] as $item) {
+            if($item["user_id"] == $this->user_id) {
+                $event["status"] = $item["status"];
+                if($item["status"] === '0') {
+                    $event["btn-attendance"] = 'default';
+                    $event["btn-absence"] = 'primary';
+                } elseif ($item["status"] === '1') {
+                    $event["btn-attendance"] = 'primary';
+                    $event["btn-absence"] = 'default';
+                } else {
+                    $event["btn-attendance"] = 'default';
+                    $event["btn-absence"] = 'default';
+                }
+            }
+            if($item["status"] === '1') {
+                $event["attend_count"]++;
+            }
+        }
+    }
+
     private function _user_query($user_id) {
         $this->db->select($this->table . '.*');
         $this->db->from($this->table);
@@ -74,28 +98,9 @@ class Events_model extends MY_Model
         $this->db->order_by('start_time', 'desc');
     }
 
-    private function _get_attendee(&$events) {
+    private function _get_all_attendee(&$events) {
         foreach ($events as &$event) {
-            $event["attendee"] = $this->invitations_model->get_attendee($event["id"]);
-            $event["attend_count"] = 0;
-            foreach ($event["attendee"] as $item) {
-                if($item["user_id"] == $this->user_id) {
-                    $event["status"] = $item["status"];
-                    if($item["status"] === '0') {
-                        $event["btn-attendance"] = 'default';
-                        $event["btn-absence"] = 'primary';
-                    } elseif ($item["status"] === '1') {
-                        $event["btn-attendance"] = 'primary';
-                        $event["btn-absence"] = 'default';
-                    } else {
-                        $event["btn-attendance"] = 'default';
-                        $event["btn-absence"] = 'default';
-                    }
-                }
-                if($item["status"] === '1') {
-                    $event["attend_count"]++;
-                }
-            }
+            $this->get_attendee($event);
         }
     }
 }

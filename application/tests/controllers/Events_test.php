@@ -16,6 +16,7 @@ class Events_test extends TestCase
         $CI->seeder->call('UsersSeeder_30');
         $CI->seeder->call('AdminUserSeeder');
         $CI->seeder->call('EventsSeeder_30');
+        $CI->seeder->call('InvitationsSeeder_Admin');
     }
 
     public function setUp()
@@ -333,6 +334,7 @@ class Events_test extends TestCase
         // Teardown ログアウト
         $this->request('GET', 'logout');
     }
+
     /**
      * @test
      */
@@ -349,6 +351,31 @@ class Events_test extends TestCase
 
         // Verify
         $this->assertContains('イベント12', $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+    
+    /**
+     * @test
+     */
+    public function 参加ボタンのクリック()
+    {
+        self::setUpBeforeClass();
+
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
+        $expected = 1;
+
+        $event_id = $this->events_model->get_max_id();
+        $data = ['event_id' => $event_id,'status' => '1'];
+
+        $this->ajaxRequest('POST', 'events/update_status', $data);
+        $sut = $this->events_model->find($event_id);
+        $this->events_model->get_attendee($sut);
+        $this->assertEquals($expected, $sut['attend_count']);
 
         // Teardown ログアウト
         $this->request('GET', 'logout');

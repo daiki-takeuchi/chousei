@@ -19,7 +19,7 @@
             <div class="row">
             {foreach from=$events item=event_item}
                 <div class="col-xs-12 col-sm-6">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default" id="{$event_item['id']}">
                         <div class="panel-body">
                             <h4>
                                 {if $admin}<a href="{site_url}events/edit/{$event_item['id']}">{/if}
@@ -41,8 +41,8 @@
                         </div>
                         <div class="panel-footer bg-white" style="height: 50px;">
                             {if array_key_exists("status", $event_item)}
-                            <a class="btn btn-sm btn-{$event_item["btn-attendance"]}">参加</a>
-                            <a class="btn btn-sm btn-{$event_item["btn-absence"]}">欠席</a>
+                            <a class="btn btn-sm btn-{$event_item["btn-attendance"]} btn-attendance">参加</a>
+                            <a class="btn btn-sm btn-{$event_item["btn-absence"]} btn-absence">欠席</a>
                             {else}
                                 <p>このイベントには参加できません。</p>
                             {/if}
