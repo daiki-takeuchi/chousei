@@ -264,5 +264,5 @@ span.fa,span.glyphicon{
 }
 
 .btn.active, .btn:active {
-    background-color: #fff;
+    background: #fff;
 }
