@@ -104,13 +104,13 @@ class Users extends MY_Controller
     private function _save_user(&$user)
     {
         $mode = $this->uri->segment(2 ,0);
-        if($user['id'] == $this->user_id) {
+        if(isset($user['id']) && $user['id'] == $this->user_id) {
             $mode = "create";
         }
 
         $user['email'] = $this->input->post('email');
         $user['name'] = $this->input->post('name');
-        if($this->admin && $user['id'] == $this->user_id) {
+        if($this->admin && isset($user['id']) && $user['id'] == $this->user_id) {
             $user['admin'] = true;
         } else {
             $user['admin'] = $this->input->post('admin') === 'on';
