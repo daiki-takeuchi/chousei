@@ -258,3 +258,7 @@ span.must {
 .bg-white {
     background: #fff;
 }
+
+span.fa,span.glyphicon{
+    width: 11px;
+}

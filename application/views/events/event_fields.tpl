@@ -20,7 +20,7 @@
                     <div class="from-group col-xs-12 col-sm-5 col-md-5 col-lg-5">
                         <div class='input-group date'>
                             <span class="input-group-addon">
-                                <span class="glyphicon glyphicon-th"></span>
+                                <span class="fa fa-calendar"></span>
                             </span>
                             <input type="text" class="form-control" name="date" placeholder="日程"
                                    value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%Y/%m/%d"}{/if}" readonly />
@@ -34,7 +34,7 @@
                                         <input type="text" class="form-control clockpicker" name="start_time"
                                                value="{if isset($event_item.start_time)}{$event_item.start_time|date_format:"%H:%M"}{else}18:00{/if}" readonly />
                                             <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-time"></span>
+                                                <span class="fa fa-clock-o"></span>
                                             </span>
                                     </div>
                                 </td>
@@ -44,7 +44,7 @@
                                         <input type="text" class="form-control clockpicker" name="end_time"
                                                value="{if isset($event_item.end_time)}{$event_item.end_time|date_format:"%H:%M"}{else}20:00{/if}" readonly />
                                             <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-time"></span>
+                                                <span class="fa fa-clock-o"></span>
                                             </span>
                                     </div>
                                 </td>
@@ -56,7 +56,7 @@
                     <label for="place">場所</label>
                     <div class='input-group'>
                         <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-pushpin"></span>
+                            <span class="fa fa-map-marker"></span>
                         </span>
                         <input type="text" class="form-control" name="place" placeholder="場所を入力してください。"
                                value="{if isset($event_item.place)}{$event_item.place}{/if}" />
@@ -67,7 +67,7 @@
                     <label for="number_of_people">募集人数</label>
                     <div class='input-group'>
                         <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-user"></span>
+                            <span class="fa fa-user"></span>
                         </span>
                         <input type="number" class="form-control" name="number_of_people" min="1" placeholder="募集人数を入力してください。"
                                value="{if isset($event_item.number_of_people)}{$event_item.number_of_people}{else}15{/if}" />

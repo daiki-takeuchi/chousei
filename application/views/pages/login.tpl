@@ -15,7 +15,7 @@
                         <p><a href="{site_url}users/create">新規登録はこちら</a></p>
                         <div class="row">
                             <div class="col-sm-12 controls">
-                                <button type="submit" name="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-log-in"></span> ログイン</button>
+                                <button type="submit" name="submit" class="btn btn-primary pull-right"><span class="fa fa-sign-in"></span> ログイン</button>
                             </div>
                         </div>
                     </form>

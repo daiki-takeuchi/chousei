@@ -3,7 +3,7 @@
         <div class="form-group">
             <div class='input-group'>
                 <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-envelope"></span>
+                    <span class="fa fa-envelope"></span>
                 </span>
                 <input type="text" class="form-control" name="email" placeholder="ログインメールアドレス"
                        value="{if isset($post['email'])}{$post['email']}{/if}" />

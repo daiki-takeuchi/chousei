@@ -53,7 +53,6 @@ $route['default_controller'] = 'pages';
 $route['home'] = 'pages/home';
 $route['login'] = 'pages/login';
 $route['logout'] = 'pages/logout';
-$route['users/(:num)'] = 'users/view/$1';
 $route['users'] = 'users';
 $route['events'] = 'events';
 $route['404_override'] = ENVIRONMENT === 'testing' ? '' : 'error/error_404';

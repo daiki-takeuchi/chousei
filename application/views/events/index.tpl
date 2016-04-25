@@ -8,7 +8,7 @@
             {if $admin}
             <div align="right" style="float: right;">
             <a href="{site_url}events/create" style="font-size: small">
-                <span class="glyphicon glyphicon-plus-sign"></span> 予定を追加
+                <span class="fa fa-calendar-plus-o"></span> 予定を追加
             </a>
             </div>
             {/if}

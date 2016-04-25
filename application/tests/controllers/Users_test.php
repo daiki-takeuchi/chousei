@@ -1,5 +1,10 @@
 <?php
 
+/**
+ * Class Users_test
+ *
+ * @property Users_model $users_model
+ */
 class Users_test extends TestCase
 {
 
@@ -32,7 +37,7 @@ class Users_test extends TestCase
         $user = $this->users_model->find()[0];
 
         // Verify
-        $output = $this->request('GET', ['Users', 'view', $user['id']]);
+        $output = $this->request('GET', ['Users', 'edit', $user['id']]);
         $this->assertContains($user['name'], $output);
 
         // Teardown ログアウト
@@ -52,7 +57,7 @@ class Users_test extends TestCase
         $user = $sut[count($sut)-1];
 
         // Verify
-        $output = $this->request('GET', ['Users', 'view', $user['id'] + 1]);
+        $output = $this->request('GET', ['Users', 'edit', $user['id'] + 1]);
         $this->assertContains('User Not Found', $output);
 
         // Teardown ログアウト
@@ -208,7 +213,7 @@ class Users_test extends TestCase
         $this->assertEquals('email_user_edit_after@example.com', $sut['email']);
         $this->assertEquals('変更後', $sut['name']);
         // 詳細ページにリダイレクトする
-        $this->assertRedirect('/users/'.$user['id']);
+        $this->assertRedirect('/users');
 
         // Teardown ログアウト
         $this->request('GET', 'logout');
@@ -217,10 +222,12 @@ class Users_test extends TestCase
     /**
      * @test
      */
-    public function ログインしていない場合にviewページにアクセスするとログインに遷移()
+    public function ログインしていない場合にeditページにアクセスするとログインに遷移()
     {
+        $user_id = $this->users_model->get_max_id();
+
         // Verify
-        $this->request('GET', ['Users', 'view']);
+        $this->request('GET', ['Users', 'edit', $user_id]);
         // ログインページにリダイレクトする
         $this->assertRedirect('/', 302);
     }
@@ -245,9 +252,9 @@ class Users_test extends TestCase
         $this->request('POST', '/', $data);
 
         // Verify
-        $this->request('GET', ['Users', 'view', $user['id']+1]);
+        $this->request('GET', ['Users', 'edit', $user['id']+1]);
         // ログインページにリダイレクトする
-        $this->assertRedirect('/', 302);
+        $this->assertRedirect('/home', 302);
 
         // Teardown ログアウト
         $this->request('GET', 'logout');

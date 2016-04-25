@@ -7,7 +7,7 @@
         <div class="panel-heading">
             <div align="right" style="float: right;">
             <a href="{site_url}users/create" style="font-size: small">
-                <span class="glyphicon glyphicon-plus-sign"></span> メンバーを追加
+                <span class="fa fa-user-plus"></span> メンバーを追加
             </a>
             </div>メンバー
             <div style="clear: both;"></div><!-- 回りこみ解除 -->

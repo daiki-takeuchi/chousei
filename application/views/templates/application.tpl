@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{site_url}assets/stylesheets/bootstrap.min.css"/>
     <link rel="stylesheet" href="{site_url}assets/stylesheets/bootstrap-datepicker.min.css"/>
     <link rel="stylesheet" href="{site_url}assets/stylesheets/bootstrap-clockpicker.min.css" />
+    <link rel="stylesheet" href="{site_url}assets/stylesheets/font-awesome.min.css" />
     <link rel="stylesheet" href="{site_url}assets/stylesheets/application.css"/>
     <script src="{site_url}assets/javascripts/jquery-1.11.3.js"></script>
     <script src="{site_url}assets/javascripts/jquery-ui-1.11.4.custom.js"></script>
