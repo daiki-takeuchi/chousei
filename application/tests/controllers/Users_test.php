@@ -34,7 +34,7 @@ class Users_test extends TestCase
         $data = ['email' => 'admin@admin.com','password' => 'admin'];
         $this->request('POST', '/', $data);
 
-        $user = $this->users_model->find()[0];
+        $user = $this->users_model->find($this->users_model->get_max_id());
 
         // Verify
         $output = $this->request('GET', ['Users', 'edit', $user['id']]);

@@ -262,3 +262,7 @@ span.must {
 span.fa,span.glyphicon{
     width: 11px;
 }
+
+.btn.active, .btn:active {
+    background-color: #fff;
+}

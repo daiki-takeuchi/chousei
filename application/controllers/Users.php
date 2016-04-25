@@ -97,17 +97,24 @@ class Users extends MY_Controller
         if (!isset($user['id'])) {
             return 'ユーザー登録';
         } else {
-            return 'ユーザー編集 | ' . $user['name'];
+            return 'ユーザー編集';
         }
     }
 
     private function _save_user(&$user)
     {
         $mode = $this->uri->segment(2 ,0);
+        if($user['id'] == $this->user_id) {
+            $mode = "create";
+        }
 
         $user['email'] = $this->input->post('email');
         $user['name'] = $this->input->post('name');
-        $user['admin'] = $this->input->post('admin') === 'on';
+        if($this->admin && $user['id'] == $this->user_id) {
+            $user['admin'] = true;
+        } else {
+            $user['admin'] = $this->input->post('admin') === 'on';
+        }
         $password = $this->input->post('password');
         if(!empty($password)) {
             $user['password'] = sha1($this->input->post('email').$this->input->post('password'));
@@ -115,9 +122,11 @@ class Users extends MY_Controller
 
         if ($this->form_validation->run('user/'.$mode) !== FALSE) {
             $this->users_model->save($user);
+            $user = $this->users_model->find($user['id']);
             if(!$this->is_login || $user['id'] == $this->user_id) {
                 $data = array("user" => $user, "is_logged_in" => 1);
                 $this->session->set_userdata($data);
+                redirect('/', 'refresh');
             }
             redirect('/users', 'refresh');
         }
