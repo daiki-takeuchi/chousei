@@ -69,7 +69,7 @@
                         <span class="input-group-addon">
                             <span class="fa fa-user"></span>
                         </span>
-                        <input type="text" class="form-control" name="number_of_people" min="1" placeholder="募集人数を入力してください。"
+                        <input type="number" class="form-control" name="number_of_people" min="1" 
                                value="{if isset($event_item.number_of_people)}{$event_item.number_of_people}{else}15{/if}" />
                         <div class="input-group-btn-vertical">
                             <button class="btn btn-default" type="button"><span class="fa fa-caret-up"></span></button>
