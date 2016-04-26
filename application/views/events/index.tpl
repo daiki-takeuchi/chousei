@@ -44,7 +44,7 @@
                             <a class="btn btn-sm btn-{$event_item["btn-attendance"]} btn-attendance">参加</a>
                             <a class="btn btn-sm btn-{$event_item["btn-absence"]} btn-absence">欠席</a>
                             {else}
-                                <p>このイベントには参加できません。</p>
+                                <p style="padding-top: 10px;">このイベントには参加できません。</p>
                             {/if}
                         </div>
                     </div>

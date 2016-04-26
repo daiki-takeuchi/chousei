@@ -78,6 +78,14 @@
                     </div>
                 </div>
                 <div class="from-group">
+                    <label for="participant">参加者</label>
+                    <div class='input-group'>
+                    {foreach from=$event_item.attendee item=attendee}
+                        <p class="small">{$attendee.name} => {$status[$attendee.status]}</p>
+                    {/foreach}
+                    </div>
+                </div>
+                <div class="from-group">
                     <label for="description">備考</label>
                     <div class='input-group' style="width: 100%;">
                         <textarea class="form-control" name="description" placeholder="備考を入力してください。">{if isset($event_item.description)}{$event_item.description}{/if}</textarea>

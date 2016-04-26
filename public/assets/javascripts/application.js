@@ -87,19 +87,18 @@ function updateStatus(objClicked) {
 }
 
 function toggledStatus(objClicked) {
-    var objNotClickd;
-    var retStatus;
+    var objNotClicked;
     if(objClicked.hasClass('btn-attendance')) {
-        objNotClickd = $('.btn-absence');
+        objNotClicked = $('.btn-absence');
     } else {
-        objNotClickd = $('.btn-attendance');
+        objNotClicked = $('.btn-attendance');
     }
     if(objClicked.hasClass('btn-default')) {
         objClicked.removeClass('btn-default');
         objClicked.addClass('btn-primary');
-        if(objNotClickd.hasClass('btn-primary')) {
-            objNotClickd.removeClass('btn-primary');
-            objNotClickd.addClass('btn-default');
+        if(objNotClicked.hasClass('btn-primary')) {
+            objNotClicked.removeClass('btn-primary');
+            objNotClicked.addClass('btn-default');
         }
     } else {
         objClicked.removeClass('btn-primary');
@@ -113,9 +112,9 @@ function getStatus(objClicked) {
     if(objClicked.hasClass('btn-attendance') && objClicked.hasClass('btn-default')) {
         retStatus = '1';
     } else if (objClicked.hasClass('btn-absence') && objClicked.hasClass('btn-default')) {
-        retStatus = '0';
+        retStatus = '2';
     } else {
-        retStatus = null;
+        retStatus = '0';
     }
     return retStatus;
 }

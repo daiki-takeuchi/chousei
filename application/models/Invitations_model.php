@@ -16,6 +16,7 @@ class Invitations_model extends MY_Model
      */
     public function get_attendee($event_id)
     {
+        $this->db->join('users', 'users.id = invitations.user_id', 'left');
         $this->db->where(array('event_id' => $event_id));
         $this->db->order_by('user_id');
         $query = $this->db->get($this->table);

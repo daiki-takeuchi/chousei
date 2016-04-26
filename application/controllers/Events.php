@@ -4,6 +4,7 @@
  * Class Events
  *
  * @property Events_model $events_model
+ * @property Users_model $users_model
  */
 class Events extends MY_Controller
 {
@@ -12,6 +13,7 @@ class Events extends MY_Controller
     {
         parent::__construct();
         $this->load->model('events_model');
+        $this->load->model('users_model');
 
         // ログインしていない場合はログインページに移動
         if(!$this->is_login) {
@@ -64,12 +66,15 @@ class Events extends MY_Controller
             $this->display('events/not_found.tpl');
             return;
         }
-        
+
+        $data['users'] = $this->users_model->get_users();
         $data['title'] = $this->_get_title($event);
+        $data['status'] = array('0' => '未回答', '1' => '参加', '2' => '欠席',);
 
         if ($_POST) {
             $this->_save_event($event);
         }
+        $this->events_model->get_attendee($event);
         $data['event_item'] = $event;
 
         $this->smarty->assign($data);
