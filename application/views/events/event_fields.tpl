@@ -65,12 +65,16 @@
                 <div class="from-group">
                     <span class="must rd5">必須</span>
                     <label for="number_of_people">募集人数</label>
-                    <div class='input-group'>
+                    <div class='input-group spinner'>
                         <span class="input-group-addon">
                             <span class="fa fa-user"></span>
                         </span>
-                        <input type="number" class="form-control" name="number_of_people" min="1" placeholder="募集人数を入力してください。"
+                        <input type="text" class="form-control" name="number_of_people" min="1" placeholder="募集人数を入力してください。"
                                value="{if isset($event_item.number_of_people)}{$event_item.number_of_people}{else}15{/if}" />
+                        <div class="input-group-btn-vertical">
+                            <button class="btn btn-default" type="button"><span class="fa fa-caret-up"></span></button>
+                            <button class="btn btn-default" type="button"><span class="fa fa-caret-down"></span></button>
+                        </div>
                     </div>
                 </div>
                 <div class="from-group">
