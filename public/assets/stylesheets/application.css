@@ -263,17 +263,8 @@ span.fa,span.glyphicon{
     width: 11px;
 }
 
-.btn-default,
-.btn-default:focus,
-.btn-default.focus,
 .btn-default:hover,
-.btn-default:active,
-.btn-default.active,
 .btn-default:active:hover,
-.btn-default.active:hover,
-.btn-default:active:focus,
-.btn-default.active:focus,
-.btn-default:active.focus,
-.btn-default.active.focus {
+.btn-default.active:hover {
     background-color: #fff;
 }
