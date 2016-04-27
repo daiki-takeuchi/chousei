@@ -75,13 +75,13 @@ class Events_model extends MY_Model
                 $event["status"] = $item["status"];
                 if($item["status"] === '0') {
                     $event["btn-attendance"] = 'default';
-                    $event["btn-absence"] = 'primary';
+                    $event["btn-absence"] = 'default';
                 } elseif ($item["status"] === '1') {
                     $event["btn-attendance"] = 'primary';
                     $event["btn-absence"] = 'default';
-                } else {
+                } elseif ($item["status"] === '2') {
                     $event["btn-attendance"] = 'default';
-                    $event["btn-absence"] = 'default';
+                    $event["btn-absence"] = 'primary';
                 }
             }
             if($item["status"] === '1') {
