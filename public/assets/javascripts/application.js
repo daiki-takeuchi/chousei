@@ -107,6 +107,7 @@ function updateStatus(objClicked) {
                 objPanel.find('.panel-body p.remain').text('募集 : ' + data.number_of_people + '\u00a0\u00a0|\u00a0\u00a0残り : ' + data.remain);
                 toggledStatus(objClicked);
             } else {
+                objPanel.find('.panel-body p.remain').text('募集 : ' + data.number_of_people + '\u00a0\u00a0|\u00a0\u00a0残り : ' + data.remain);
                 MessageBox.show(data.message);
             }
         },
