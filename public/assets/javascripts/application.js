@@ -178,9 +178,16 @@ function userSelect() {
                     callback: function () {
                         $("input[name='name']:checkbox:checked").each(function () {
                             var elmAttendee = $("#attendee");
-                            if (elmAttendee.text().indexOf($(this).val()) == -1) {
-                                var attendee = '<p class="small">' + $(this).val() + ' => 未回答</p>' +
-                                    '<input type="hidden" name="invite_users[]" value="' + $(this).attr("id") + '">';
+                            var checked = $(this);
+                            var flg = false;
+                            elmAttendee.children("p").each(function (){
+                                if($(this).attr("id") == 'user-' + checked.attr("id")) {
+                                    flg = true;
+                                }
+                            });
+                            if(!flg) {
+                                var attendee = '<p class="small" id="user-' + checked.attr("id") + '">' + checked.val() + ' => 未回答</p>' +
+                                    '<input type="hidden" name="invite_users[]" value="' + checked.attr("id") + '">';
                                 elmAttendee.append(attendee);
                             }
                         });
