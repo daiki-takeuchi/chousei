@@ -91,6 +91,9 @@ class Events_model extends MY_Model
     }
 
     public function updateState($event_id, $user_id, $status) {
+        $this->db->trans_begin();
+        $this->lock_table();
+        $this->invitations_model->lock_table();
         $event = $this->find($event_id);
         $this->get_attendee($event);
 
@@ -98,6 +101,14 @@ class Events_model extends MY_Model
         if($event['number_of_people'] - $event['attend_count'] > 0 || $status !== '1') {
             $this->invitations_model->updateState($event_id, $user_id, $status);
             $message = '';
+        }
+        if ($this->db->trans_status() === FALSE)
+        {
+            $this->db->trans_rollback();
+        }
+        else
+        {
+            $this->db->trans_commit();
         }
         $this->get_attendee($event);
 

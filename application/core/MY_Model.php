@@ -78,4 +78,10 @@ class MY_Model extends CI_Model
         $query = $this->db->get($this->table);
         return $query->row_array()['id'];
     }
+    
+    public function lock_table()
+    {
+        $sql = 'LOCK TABLE ' . $this->table . ' IN EXCLUSIVE MODE';
+        $this->db->query($sql);
+    }
 }
