@@ -74,11 +74,13 @@ function updateStatus(objClicked) {
         type: 'POST',
         url: url,
         data: data,
+        dataType: 'json',
         success: function(data, dataType) {
-            if(data !== '') {
-                alert(data);
-            } else {
+            if(data.message === '') {
+                objPanel.find('.panel-body p.remain').text('募集 : ' + data.number_of_people + '\u00a0\u00a0|\u00a0\u00a0残り : ' + data.remain);
                 toggledStatus(objClicked);
+            } else {
+                bootbox.alert(data.message);
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown){alert(errorThrown.message);}
@@ -107,7 +109,7 @@ function toggledStatus(objClicked) {
 }
 
 function getStatus(objClicked) {
-    
+    var retStatus;
     // 更新前なので逆
     if(objClicked.hasClass('btn-attendance') && objClicked.hasClass('btn-default')) {
         retStatus = '1';
@@ -120,10 +122,11 @@ function getStatus(objClicked) {
 }
 
 $(function () {
-  $('.spinner .btn:first-of-type').on('click', function() {
-    $('.spinner input').val( parseInt($('.spinner input').val(), 10) + 1);
-  });
-  $('.spinner .btn:last-of-type').on('click', function() {
-    $('.spinner input').val( parseInt($('.spinner input').val(), 10) - 1);
-  });
+    var spinner_input = $('.spinner input');
+    $('.spinner .btn:first-of-type').on('click', function () {
+        spinner_input.val(parseInt(spinner_input.val(), 10) + 1);
+    });
+    $('.spinner .btn:last-of-type').on('click', function () {
+        spinner_input.val(parseInt(spinner_input.val(), 10) - 1);
+    });
 });

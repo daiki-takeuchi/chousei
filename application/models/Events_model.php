@@ -90,6 +90,20 @@ class Events_model extends MY_Model
         }
     }
 
+    public function updateState($event_id, $user_id, $status) {
+        $event = $this->find($event_id);
+        $this->get_attendee($event);
+
+        $message = '募集人数がいっぱいです。';
+        if($event['number_of_people'] - $event['attend_count'] > 0 || $status !== '1') {
+            $this->invitations_model->updateState($event_id, $user_id, $status);
+            $message = '';
+        }
+        $this->get_attendee($event);
+
+        echo json_encode(array('number_of_people' => $event['number_of_people'], 'remain' => $event['number_of_people'] - $event['attend_count'], 'message' => $message));
+    }
+
     private function _user_query($user_id) {
         $this->db->select($this->table . '.*');
         $this->db->from($this->table);

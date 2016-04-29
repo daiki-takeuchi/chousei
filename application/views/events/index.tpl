@@ -34,7 +34,7 @@
                             <p>{$event_item['place']|escape}</p>
                             <p>{$event_item['description']|escape|nl2br}</p>
                             <br />
-                            <p>
+                            <p class="remain">
                                 募集 : {$event_item['number_of_people']}&nbsp;&nbsp;|&nbsp;
                                 残り : {$event_item['number_of_people'] - $event_item['attend_count']}
                             </p>

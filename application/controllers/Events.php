@@ -103,7 +103,7 @@ class Events extends MY_Controller
             $status = $this->input->post('status') == null ? null:$this->input->post('status');
             $user_id = $this->user_id;
 
-            $this->invitations_model->updateState($event_id, $user_id, $status);
+            $this->events_model->updateState($event_id, $user_id, $status);
         }
     }
 
