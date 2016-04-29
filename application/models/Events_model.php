@@ -103,6 +103,11 @@ class Events_model extends MY_Model
 
         echo json_encode(array('number_of_people' => $event['number_of_people'], 'remain' => $event['number_of_people'] - $event['attend_count'], 'message' => $message));
     }
+    
+    public function saveInvitation($invitation)
+    {
+        $this->invitations_model->save($invitation);
+    }
 
     private function _user_query($user_id) {
         $this->db->select($this->table . '.*');

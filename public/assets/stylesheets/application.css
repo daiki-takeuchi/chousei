@@ -309,3 +309,13 @@ span.fa,span.glyphicon{
     top: 0;
     left: 4px;
 }
+
+.bb-alert
+{
+    position: fixed;
+    bottom: 30%;
+    right: 0;
+    margin-bottom: 0;
+    font-size: small;
+    z-index: 2000;
+}

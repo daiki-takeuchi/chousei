@@ -130,7 +130,6 @@ class Events extends MY_Controller
     private function _save_event(&$event)
     {
         $mode = $this->uri->segment(2 ,0);
-
         $event['title'] = $this->input->post('title');
         if($this->input->post('date')) {
             $event['start_time'] = $this->input->post('date') . ' ' . $this->input->post('start_time');
@@ -142,6 +141,15 @@ class Events extends MY_Controller
 
         if ($this->form_validation->run('events') !== FALSE) {
             $this->events_model->save($event);
+
+            $invite_users = $this->input->post('invite_users');
+            foreach ((array)$invite_users as $invite_user) {
+                $invitation = array(
+                    'event_id' => $event['id'],
+                    'user_id' => $invite_user,
+                    'status' => 0);
+                $this->events_model->saveInvitation($invitation);
+            }
             redirect('/events', 'refresh');
         }
     }

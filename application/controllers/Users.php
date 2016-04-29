@@ -81,6 +81,15 @@ class Users extends MY_Controller
         }
         redirect('/users', 'refresh');
     }
+    
+    public function get_users_ajax()
+    {
+        //'*-- Ajax通信の場合のみ処理する
+        if($this->input->is_ajax_request() && $this->admin) {
+            $users = $this->users_model->find();
+            echo json_encode($users);
+        }
+    }
 
     private function _get_user($id = NULL)
     {

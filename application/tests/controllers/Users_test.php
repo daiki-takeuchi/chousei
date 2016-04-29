@@ -381,4 +381,24 @@ class Users_test extends TestCase
         // Teardown ログアウト
         $this->request('GET', 'logout');
     }
+
+    /**
+     * @test
+     */
+    public function ajaxでユーザー一覧の取得()
+    {
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
+        $users = $this->users_model->find();
+        $expected = count($users);
+
+        $output = $this->ajaxRequest('POST', 'users/get_users_ajax');
+        $sut = json_decode($output);
+        $this->assertEquals($expected, count($sut));
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
 }

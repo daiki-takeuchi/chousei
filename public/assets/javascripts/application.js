@@ -28,6 +28,33 @@ $(function () {
     });
 });
 
+var MessageBox = (function() {
+    "use strict";
+
+    var elem,
+        hideHandler,
+        that = {};
+
+    that.init = function(options) {
+        elem = $(options.selector);
+    };
+
+    that.show = function(text) {
+        clearTimeout(hideHandler);
+
+        elem.find("span").html(text);
+        elem.delay(200).fadeIn().delay(4000).fadeOut();
+    };
+
+    return that;
+}());
+
+$(function () {
+    MessageBox.init({
+        "selector": ".bb-alert"
+    });
+});
+
 $(function () {
 
     $('.delete-alert').click(function (e) {
@@ -80,10 +107,10 @@ function updateStatus(objClicked) {
                 objPanel.find('.panel-body p.remain').text('募集 : ' + data.number_of_people + '\u00a0\u00a0|\u00a0\u00a0残り : ' + data.remain);
                 toggledStatus(objClicked);
             } else {
-                bootbox.alert(data.message);
+                MessageBox.show(data.message);
             }
         },
-        error: function(XMLHttpRequest, textStatus, errorThrown){alert(errorThrown.message);}
+        error: function(XMLHttpRequest, textStatus, errorThrown){MessageBox.show(errorThrown.message);}
     });
     return false;
 }
@@ -130,3 +157,58 @@ $(function () {
         spinner_input.val(parseInt(spinner_input.val(), 10) - 1);
     });
 });
+
+function userSelect() {
+    bootbox.dialog({
+            title: "参加者を選んで下さい",
+            message: '<script>getUsers();</script> ' +
+            '<div class="row">  ' +
+            '<div class="col-md-12"> ' +
+            '<form class="form-horizontal"> ' +
+            '<div class="form-group"> ' +
+            '<div class="col-md-4" id="users"> ' +
+            '</div> ' +
+            '</div> ' +
+            '</form> </div>  </div>',
+            buttons: {
+                success: {
+                    label: "追加",
+                    className: "btn-success",
+                    callback: function () {
+                        $("input[name='name']:checkbox:checked").each(function () {
+                            var elmAttendee = $("#attendee");
+                            if (elmAttendee.text().indexOf($(this).val()) == -1) {
+                                var attendee = '<p class="small">' + $(this).val() + ' => 未回答</p>' +
+                                    '<input type="hidden" name="invite_users[]" value="' + $(this).attr("id") + '">';
+                                elmAttendee.append(attendee);
+                            }
+                        });
+                    }
+                }
+            }
+        }
+    );
+}
+
+function getUsers() {
+    var url = location.href;
+    url = url.substring(0, url.indexOf('events')) + 'users/get_users_ajax';
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        dataType: 'json',
+        success: function(data, dataType) {
+            var user;
+            for(var i in data){
+                user = '<div class="checkbox"> ' +
+                    '<label for="' + data[i].id + '"> ' +
+                    '<input type="checkbox" name="name" id="' + data[i].id + '" value="' + data[i].name + '"> ' + data[i].name + ' </label> ' +
+                    '</div>';
+                $("#users").append(user);
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown){MessageBox.show(errorThrown.message);}
+    });
+    return false;
+}

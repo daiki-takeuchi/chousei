@@ -80,9 +80,14 @@
                 <div class="from-group">
                     <label for="participant">参加者</label>
                     <div class='input-group'>
-                    {foreach from=$event_item.attendee item=attendee}
-                        <p class="small">{$attendee.name} => {$status[$attendee.status]}</p>
-                    {/foreach}
+                        <div id="attendee">
+                        {foreach from=$event_item.attendee item=attendee}
+                            <p class="small">{$attendee.name} => {$status[$attendee.status]}</p>
+                        {/foreach}
+                        </div>
+                    <a href="javascript:void(0)" onclick="userSelect(); return false;" class="small">
+                        <span class="fa fa-user-plus"></span> 参加者を追加
+                    </a>
                     </div>
                 </div>
                 <div class="from-group">

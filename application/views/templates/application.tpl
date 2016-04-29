@@ -32,6 +32,9 @@
             {include file='templates/error_messages.tpl'}
         </div>
     </div>
+    <div class="bb-alert alert alert-info" style="display:none;">
+        <span></span>
+    </div>
     {block name=main_contents}{/block}
 </div>
 {include file='templates/footer.tpl'}
