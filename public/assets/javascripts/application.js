@@ -176,6 +176,7 @@ function userSelect() {
                     label: "追加",
                     className: "btn-success",
                     callback: function () {
+                        var cnt = 0;
                         $("input[name='name']:checkbox:checked").each(function () {
                             var elmAttendee = $("#attendee");
                             var checked = $(this);
@@ -187,9 +188,11 @@ function userSelect() {
                             });
                             if(!flg) {
                                 var attendee = '<p class="small" id="user-' + checked.attr("id") + '">' + checked.val() + ' => 未回答</p>' +
-                                    '<input type="hidden" name="invite_users[]" value="' + checked.attr("id") + '">';
+                                    '<input type="hidden" name="invite_users[' + cnt + '][id]" value="' + checked.attr("id") + '">' +
+                                    '<input type="hidden" name="invite_users[' + cnt + '][name]" value="' + checked.val() + '">';
                                 elmAttendee.append(attendee);
                             }
+                            cnt++;
                         });
                     }
                 }

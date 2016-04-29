@@ -82,7 +82,7 @@
                     <div class='input-group'>
                         <div id="attendee">
                         {foreach from=$event_item.attendee item=attendee}
-                            <p class="small" id="user-{$attendee.user_id}">{$attendee.name} => {$status[$attendee.status]}</p>
+                            <p class="small" id="user-{$attendee.user_id}">{if $attendee.name}{$attendee.name}{else}{$attendee.user_name}{/if} => {$status[$attendee.status]}</p>
                         {/foreach}
                         </div>
                     <a href="javascript:void(0)" onclick="userSelect(); return false;" class="small">

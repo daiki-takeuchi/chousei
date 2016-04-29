@@ -146,7 +146,8 @@ class Events extends MY_Controller
             foreach ((array)$invite_users as $invite_user) {
                 $invitation = array(
                     'event_id' => $event['id'],
-                    'user_id' => $invite_user,
+                    'user_id' => $invite_user['id'],
+                    'user_name' => $invite_user['name'],
                     'status' => 0);
                 $this->events_model->saveInvitation($invitation);
             }
