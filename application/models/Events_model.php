@@ -68,7 +68,10 @@ class Events_model extends MY_Model
 
     public function get_attendee(&$event)
     {
-        $event["attendee"] = $this->invitations_model->get_attendee($event["id"]);
+        $event["attendee"] = array();
+        if(isset($event["id"])) {
+            $event["attendee"] = $this->invitations_model->get_attendee($event["id"]);
+        }
         $event["attend_count"] = 0;
         foreach ($event["attendee"] as $item) {
             if($item["user_id"] == $this->user_id) {
