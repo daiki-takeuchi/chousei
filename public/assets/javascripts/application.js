@@ -223,3 +223,16 @@ function getUsers() {
     });
     return false;
 }
+
+$(function () {
+    $('article').readmore();
+});
+
+$(function () {
+    $('article').readmore({
+        speed: 1000,
+        collapsedHeight: 12,
+        moreLink: '<a href="#" style="font-size: x-small;">続きを読む</a>',
+        lessLink: '<a href="#" style="font-size: x-small;">閉じる</a>'
+    });
+});

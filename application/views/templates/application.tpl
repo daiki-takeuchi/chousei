@@ -19,6 +19,7 @@
     <script src="{site_url}assets/javascripts/bootstrap-datepicker.ja.min.js"></script>
     <script src="{site_url}assets/javascripts/bootstrap-clockpicker.min.js"></script>
     <script src="{site_url}assets/javascripts/bootbox.min.js"></script>
+    <script src="{site_url}assets/javascripts/readmore.min.js"></script>
     <script src="{site_url}assets/javascripts/application.js"></script>
     {include file='templates/shim.tpl'}
 </head>
