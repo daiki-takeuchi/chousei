@@ -2,8 +2,9 @@
 
 /**
  * Class Events_test
- * 
+ *
  * @property Events_model $events_model
+ * @property Users_model $users_model
  */
 class Events_test extends TestCase
 {
@@ -23,7 +24,9 @@ class Events_test extends TestCase
     {
         $this->resetInstance();
         $this->CI->load->model('Events_model');
+        $this->CI->load->model('Users_model');
         $this->events_model = $this->CI->Events_model;
+        $this->users_model = $this->CI->Users_model;
     }
 
     /**
@@ -124,6 +127,8 @@ class Events_test extends TestCase
 
         $before = count($this->events_model->find());
 
+        $sut = $this->users_model->find_by_email('email1@example.com');
+
         // Exercise
         $post = [
             'title' => 'タイトル',
@@ -133,6 +138,7 @@ class Events_test extends TestCase
             'place' => '場所',
             'number_of_people' => '15',
             'description' => '備考',
+            'invite_users' => array($sut['id']),
         ];
         $this->request('POST', ['Events', 'create'], $post);
 
@@ -376,6 +382,112 @@ class Events_test extends TestCase
         $sut = $this->events_model->find($event_id);
         $this->events_model->get_attendee($sut);
         $this->assertEquals($expected, $sut['attend_count']);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
+    public function 参加表明している人より少ない人数にしようとしたらエラー()
+    {
+        self::setUpBeforeClass();
+
+        $this->CI->seeder->call('Events3UserToParticipateSeeder');
+        
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
+        $event_id = $this->events_model->get_max_id();
+
+        $post = [
+            'title' => 'タイトル_変更後',
+            'date' => date('Y/m/d'),
+            'start_time' => '19:00',
+            'end_time' => '21:00',
+            'place' => '場所_変更後',
+            'number_of_people' => '1',
+            'description' => '備考_変更後',
+        ];
+        $output = $this->request('POST', ['Events', 'edit' ,$event_id], $post);
+
+        $this->assertContains('募集人数欄は参加人数より少なくできません。', $output);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
+    public function すでに終了した予定に参加しようとするとエラー()
+    {
+        self::setUpBeforeClass();
+
+        $this->CI->seeder->call('Events3UserToParticipateSeeder');
+
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
+        $event_id = $this->events_model->get_max_id();
+
+        // 終了しちゃう
+        $post = [
+            'title' => 'タイトル_変更後',
+            'date' => date('Y/m/d', strtotime('-1 day')),
+            'start_time' => '19:00',
+            'end_time' => '21:00',
+            'place' => '場所_変更後',
+            'number_of_people' => '3',
+            'description' => '備考_変更後',
+        ];
+        $this->request('POST', ['Events', 'edit' ,$event_id], $post);
+
+        $data = ['event_id' => $event_id,'status' => '1'];
+        $output = $this->ajaxRequest('POST', 'events/update_status', $data);
+        $ret = json_decode($output);
+
+        $this->assertContains('すでに終了した予定です。', $ret->message);
+
+        // Teardown ログアウト
+        $this->request('GET', 'logout');
+    }
+
+    /**
+     * @test
+     */
+    public function 募集人数がいっぱいの予定に参加しようとするとエラー()
+    {
+        self::setUpBeforeClass();
+
+        $this->CI->seeder->call('Events3UserToParticipateSeeder');
+
+        // 管理者でログイン
+        $data = ['email' => 'admin@admin.com','password' => 'admin'];
+        $this->request('POST', '/', $data);
+
+        $event_id = $this->events_model->get_max_id();
+
+        // 終了しちゃう
+        $post = [
+            'title' => 'タイトル_変更後',
+            'date' => date('Y/m/d'),
+            'start_time' => '19:00',
+            'end_time' => '21:00',
+            'place' => '場所_変更後',
+            'number_of_people' => '3',
+            'description' => '備考_変更後',
+        ];
+        $this->request('POST', ['Events', 'edit' ,$event_id], $post);
+
+        $data = ['event_id' => $event_id,'status' => '1'];
+        $output = $this->ajaxRequest('POST', 'events/update_status', $data);
+        $ret = json_decode($output);
+
+        $this->assertContains('募集人数がいっぱいです。', $ret->message);
 
         // Teardown ログアウト
         $this->request('GET', 'logout');

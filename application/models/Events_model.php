@@ -100,10 +100,13 @@ class Events_model extends MY_Model
         $event = $this->find($event_id);
         $this->get_attendee($event);
 
-        $message = '募集人数がいっぱいです。';
-        if($event['number_of_people'] - $event['attend_count'] > 0 || $status !== '1') {
+        $message = '';
+        if(date('Y/m/d H:i:s') > date('Y/m/d H:i:s', strtotime($event['end_time']))) {
+            $message = 'すでに終了した予定です。';
+        } elseif($event['attend_count'] >= $event['number_of_people'] && $status === '1') {
+            $message = '募集人数がいっぱいです。';
+        } else {
             $this->invitations_model->updateState($event_id, $user_id, $status);
-            $message = '';
         }
         if ($this->db->trans_status() === FALSE)
         {
