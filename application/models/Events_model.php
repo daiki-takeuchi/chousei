@@ -120,7 +120,19 @@ class Events_model extends MY_Model
     
     public function saveInvitation($invitation)
     {
-        $this->invitations_model->save($invitation);
+        $this->db->trans_begin();
+        $this->invitations_model->lock_table();
+        if(!$this->invitations_model->find_by_param(array('event_id' => $invitation['event_id'], 'user_id' => $invitation['user_id']))) {
+            $this->invitations_model->save($invitation);
+        }
+        if ($this->db->trans_status() === FALSE)
+        {
+            $this->db->trans_rollback();
+        }
+        else
+        {
+            $this->db->trans_commit();
+        }
     }
 
     private function _user_query($user_id) {

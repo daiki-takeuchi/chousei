@@ -70,7 +70,7 @@ $config = array(
         array(
             'field' => 'number_of_people',
             'label' => '募集人数',
-            'rules' => 'required|greater_than[0]'
+            'rules' => 'required|greater_than[0]|check_number_of_people'
         )
     )
 );

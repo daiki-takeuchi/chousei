@@ -82,4 +82,22 @@ class MY_Form_validation extends CI_Form_validation
 
         return true;
     }
+
+    function check_number_of_people($number_of_people)
+    {
+        $event_id = $this->CI->uri->segment(3 ,0);
+        if($event_id) {
+            $this->CI->load->model("events_model");
+
+            $event = $this->CI->events_model->find($event_id);
+            $this->CI->events_model->get_attendee($event);
+
+            // 参加表明している人より少ない人数にしようとしたらエラー
+            if($number_of_people < $event['attend_count']) {
+                $this->set_message('check_number_of_people', '%s欄は参加人数より少なくできません。');
+                return false;
+            }
+        }
+        return true;
+    }
 }

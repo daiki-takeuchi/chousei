@@ -34,4 +34,11 @@ class Invitations_model extends MY_Model
             $this->save($invitation);
         }
     }
+
+    public function find_by_param($param)
+    {
+        $this->db->where($param);
+        $query = $this->db->get($this->table);
+        return $query->result_array();
+    }
 }

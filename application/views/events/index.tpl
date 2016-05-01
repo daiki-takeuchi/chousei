@@ -31,7 +31,7 @@
                                 ～
                                 {$event_item['end_time']|date_format:"%H:%M"}
                             </p>
-                            <p>{$event_item['place']|escape}</p>
+                            <p>{$event_item['place']|escape}&nbsp;</p>
                             {if empty($event_item['description'])}<div style="height: 26px;">{/if}
                                 <article><p>{$event_item['description']|escape|nl2br}</p></article>
                             {if empty($event_item['description'])}</div>{/if}
