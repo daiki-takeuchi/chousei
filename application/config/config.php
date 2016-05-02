@@ -360,7 +360,7 @@ $config['encryption_key'] = 'Ds2cW35QZzn68C9339H0ybR0W9RFYe3T';
 */
 $config['sess_driver'] = 'files';
 $config['sess_cookie_name'] = 'ci_session';
-$config['sess_expiration'] = 7200;
+$config['sess_expiration'] = 0;
 $config['sess_save_path'] = APPPATH."cache";
 $config['sess_match_ip'] = FALSE;
 $config['sess_time_to_update'] = 300;

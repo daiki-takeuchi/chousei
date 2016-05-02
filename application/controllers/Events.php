@@ -15,8 +15,7 @@ class Events extends MY_Controller
         $this->load->model('events_model');
         $this->load->model('users_model');
 
-        // ログインしていない場合はログインページに移動
-        if(!$this->is_login) {
+        if(!$this->is_login && !$this->input->is_ajax_request()) {
             redirect(site_url());
         }
         $this->events_model->setAdmin($this->admin);
@@ -97,13 +96,15 @@ class Events extends MY_Controller
 
     public function update_status()
     {
-        //'*-- Ajax通信の場合のみ処理する
-        if($this->input->is_ajax_request()) {
+        // Ajax通信の場合のみ処理する
+        if($this->input->is_ajax_request() && $this->is_login) {
             $event_id = $this->input->post('event_id');
             $status = $this->input->post('status') == null ? null:$this->input->post('status');
             $user_id = $this->user_id;
 
             $this->events_model->updateState($event_id, $user_id, $status);
+        } else {
+            echo json_encode(array('message' => 'エラーが発生しました。再度ログインして実施してください。'));
         }
     }
 
