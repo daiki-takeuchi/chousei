@@ -106,7 +106,7 @@ class Events_model extends MY_Model
         } elseif($event['attend_count'] >= $event['number_of_people'] && $status === '1') {
             $message = '募集人数がいっぱいです。';
         } elseif(!$this->user_id) {
-            $message = 'エラーが発生しました。再度ログインして実施してください。';
+            $message = 'エラーが発生しました。<br />再度ログインして実施してください。';
         } else {
             $this->invitations_model->updateState($event_id, $this->user_id, $status);
         }
