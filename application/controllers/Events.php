@@ -97,14 +97,10 @@ class Events extends MY_Controller
     public function update_status()
     {
         // Ajax通信の場合のみ処理する
-        if($this->input->is_ajax_request() && $this->is_login) {
+        if($this->input->is_ajax_request()) {
             $event_id = $this->input->post('event_id');
             $status = $this->input->post('status') == null ? null:$this->input->post('status');
-            $user_id = $this->user_id;
-
-            $this->events_model->updateState($event_id, $user_id, $status);
-        } else {
-            echo json_encode(array('message' => 'エラーが発生しました。再度ログインして実施してください。'));
+            $this->events_model->updateState($event_id, $status);
         }
     }
 

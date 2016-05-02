@@ -93,7 +93,7 @@ class Events_model extends MY_Model
         }
     }
 
-    public function updateState($event_id, $user_id, $status) {
+    public function updateState($event_id, $status) {
         $this->db->trans_begin();
         $this->lock_table();
         $this->invitations_model->lock_table();
@@ -105,8 +105,10 @@ class Events_model extends MY_Model
             $message = 'すでに終了した予定です。';
         } elseif($event['attend_count'] >= $event['number_of_people'] && $status === '1') {
             $message = '募集人数がいっぱいです。';
+        } elseif(!$this->user_id) {
+            $message = 'エラーが発生しました。再度ログインして実施してください。';
         } else {
-            $this->invitations_model->updateState($event_id, $user_id, $status);
+            $this->invitations_model->updateState($event_id, $this->user_id, $status);
         }
         if ($this->db->trans_status() === FALSE)
         {
