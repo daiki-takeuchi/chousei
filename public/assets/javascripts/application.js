@@ -118,10 +118,11 @@ function updateStatus(objClicked) {
 
 function toggledStatus(objClicked) {
     var objNotClicked;
+    var id = objClicked.parent().parent().attr('id');
     if(objClicked.hasClass('btn-attendance')) {
-        objNotClicked = $('.btn-absence');
+        objNotClicked = $('.btn-absence','#'+id);
     } else {
-        objNotClicked = $('.btn-attendance');
+        objNotClicked = $('.btn-attendance','#'+id);
     }
     if(objClicked.hasClass('btn-default')) {
         objClicked.removeClass('btn-default');

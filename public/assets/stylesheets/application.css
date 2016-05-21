@@ -313,7 +313,7 @@ span.fa,span.glyphicon{
 .bb-alert
 {
     position: fixed;
-    bottom: 30%;
+    top: 20%;
     right: 0;
     margin-bottom: 0;
     font-size: small;
